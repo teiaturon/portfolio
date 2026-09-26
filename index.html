@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ca" data-lang="ca">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,9 +10,15 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 
+
 <style>
+
+/* =========================================================
+   VARIABLES
+========================================================= */
 
 :root{
   --pink:#FF2E9E;
@@ -20,6 +28,11 @@
   --cream:#FFF7EE;
   --blue:#8ED8FF;
 }
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
 
 *{
   box-sizing:border-box;
@@ -38,7 +51,10 @@ body{
   overflow-x:hidden;
 }
 
-h1,h2,h3,.display{
+h1,
+h2,
+h3,
+.display{
   font-family:'Unbounded', sans-serif;
   font-weight:900;
   line-height:1.05;
@@ -79,6 +95,14 @@ header{
   font-family:'Unbounded';
   font-weight:900;
   font-size:1.4rem;
+  cursor:pointer;
+
+  transition:.25s ease;
+}
+
+.logo:hover{
+  color:var(--pink);
+  transform:translateY(-2px);
 }
 
 nav.main-nav{
@@ -93,6 +117,7 @@ nav.main-nav a{
 
 nav.main-nav a:hover{
   color:var(--pink);
+  transform:translateY(-2px);
 }
 
 .lang-switch{
@@ -151,7 +176,7 @@ nav.main-nav a:hover{
 }
 
 
-/* Decoració creativa */
+/* Decoració */
 
 .hero::before{
   content:"✦";
@@ -190,7 +215,7 @@ nav.main-nav a:hover{
 }
 
 
-/* Petita etiqueta decorativa */
+/* Etiqueta */
 
 .hero-decoration{
   position:absolute;
@@ -216,7 +241,7 @@ nav.main-nav a:hover{
 }
 
 
-/* TEXT HERO */
+/* HERO TEXT */
 
 .hero-text{
 
@@ -240,13 +265,13 @@ nav.main-nav a:hover{
   transition:color .2s ease;
 }
 
-
-/* WIGGLE */
-
 .hero h1:hover{
   animation:wiggle .45s ease-in-out;
   color:var(--cream);
 }
+
+
+/* WIGGLE */
 
 @keyframes wiggle{
 
@@ -277,27 +302,75 @@ nav.main-nav a:hover{
 }
 
 
-/* INTRO HERO */
+/* =========================================================
+   NOU ESTIL DEL TEXT DEL HERO
+========================================================= */
 
 .hero-intro{
 
-  max-width:36ch;
+  max-width:620px;
 
-  margin:1.5rem auto 0;
+  margin:1.7rem auto 0;
 
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  gap:1rem;
 }
 
-.hero-intro p{
 
-  font-size:1.2rem;
+/* Estudiant de Publicitat */
 
-  line-height:1.5;
+.hero-intro > p:first-child{
 
+  display:inline-block;
+
+  background:#fff;
+
+  border:3px solid var(--ink);
+
+  border-radius:999px;
+
+  padding:.65rem 1.3rem;
+
+  font-size:1.05rem;
+
+  line-height:1.3;
+
+  font-weight:500;
+
+  box-shadow:4px 4px 0 rgba(0,0,0,.15);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
 }
+
+.hero-intro > p:first-child:hover{
+
+  transform:translateY(-4px) rotate(-1deg);
+
+  box-shadow:7px 7px 0 var(--ink);
+
+  background:var(--cream);
+}
+
+
+/* Frase creativitat */
 
 .hero-claim{
 
-  margin-top:1rem;
+  width:100%;
+
+  background:var(--lime);
+
+  border:3px solid var(--ink);
+
+  border-radius:18px;
+
+  padding:1rem 1.5rem;
 
   font-family:'Unbounded', sans-serif;
 
@@ -307,8 +380,35 @@ nav.main-nav a:hover{
 
   line-height:1.35 !important;
 
+  box-shadow:6px 6px 0 var(--ink);
+
+  transform:rotate(-1deg);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
 }
 
+.hero-claim::before{
+  content:"✦ ";
+}
+
+.hero-claim::after{
+  content:" ✦";
+}
+
+.hero-claim:hover{
+
+  transform:rotate(1deg) translateY(-5px);
+
+  box-shadow:10px 10px 0 var(--ink);
+
+  background:#e1ff6a;
+}
+
+
+/* CTA */
 
 .cta-btn{
 
@@ -322,7 +422,7 @@ nav.main-nav a:hover{
 
   font-weight:700;
 
-  padding:.9rem 1.8rem;
+  padding:1rem 2rem;
 
   border-radius:999px;
 
@@ -330,7 +430,13 @@ nav.main-nav a:hover{
 
   border:3px solid var(--ink);
 
-  transition:.2s ease;
+  box-shadow:5px 5px 0 var(--lilac);
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    color .25s ease,
+    box-shadow .25s ease;
 }
 
 .cta-btn:hover{
@@ -339,7 +445,9 @@ nav.main-nav a:hover{
 
   color:var(--ink);
 
-  transform:translateY(-3px);
+  transform:translateY(-5px);
+
+  box-shadow:8px 8px 0 var(--ink);
 }
 
 
@@ -587,14 +695,6 @@ nav.main-nav a:hover{
 
 }
 
-@media (prefers-reduced-motion: reduce){
-
-  .marquee{
-    animation:none;
-  }
-
-}
-
 
 /* =========================================================
    PROJECTS
@@ -615,6 +715,11 @@ nav.main-nav a:hover{
 
   margin-bottom:2rem;
 }
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
 
 .tabs{
 
@@ -650,15 +755,20 @@ nav.main-nav a:hover{
 
   background:var(--lime);
 
+  transform:translateY(-2px);
 }
 
 .tabs button.active{
 
   background:var(--lilac);
+
+  box-shadow:4px 4px 0 var(--ink);
 }
 
 
-/* GRID */
+/* =========================================================
+   GRID
+========================================================= */
 
 .project-grid{
 
@@ -673,7 +783,9 @@ nav.main-nav a:hover{
 }
 
 
-/* CARD */
+/* =========================================================
+   PROJECT CARD
+========================================================= */
 
 .project-card{
 
@@ -685,60 +797,23 @@ nav.main-nav a:hover{
 
   background:#fff;
 
-  transition:.25s ease;
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+
+  box-shadow:8px 9px 0 var(--ink);
 }
 
 .project-card:hover{
 
-  transform:translateY(-4px);
+  transform:translate(-2px,-5px);
 
-  box-shadow:8px 8px 0 var(--ink);
+  box-shadow:12px 14px 0 var(--ink);
 }
 
 
 /* =========================================================
-   VÍDEOS
-========================================================= */
-
-.youtube-video,
-.project-video{
-
-  width:100%;
-
-  margin-bottom:1rem;
-
-  border:2px solid var(--ink);
-
-  border-radius:12px;
-
-  overflow:hidden;
-
-  background:#000;
-}
-
-.youtube-video iframe,
-.project-video iframe,
-.project-video video{
-
-  width:100%;
-
-  aspect-ratio:16/9;
-
-  display:block;
-
-  border:0;
-
-  background:#000;
-}
-
-.project-details .project-video:last-child{
-
-  margin-bottom:0;
-}
-
-
-/* =========================================================
-   CARRUSEL
+   PROJECT MEDIA / CAROUSEL
 ========================================================= */
 
 .carousel{
@@ -786,6 +861,9 @@ nav.main-nav a:hover{
   overflow:hidden;
 }
 
+
+/* IMATGES */
+
 .car-track .slide img{
 
   width:100%;
@@ -798,6 +876,43 @@ nav.main-nav a:hover{
 
   display:block;
 }
+
+
+/* VÍDEOS */
+
+.car-track .slide.video-slide{
+
+  padding:0;
+
+  background:#000;
+}
+
+.car-track .slide.video-slide iframe{
+
+  width:100%;
+
+  height:100%;
+
+  border:0;
+
+  display:block;
+}
+
+.car-track .slide.video-slide video{
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:contain;
+
+  display:block;
+
+  background:#000;
+}
+
+
+/* COLORS ALTERNATIUS */
 
 .car-track .slide:nth-child(3n+1){
 
@@ -815,7 +930,19 @@ nav.main-nav a:hover{
 }
 
 
-/* FLETXES */
+/* Evitem el background en vídeos */
+
+.car-track .slide.video-slide:nth-child(3n+1),
+.car-track .slide.video-slide:nth-child(3n+2),
+.car-track .slide.video-slide:nth-child(3n+3){
+
+  background:#000;
+}
+
+
+/* =========================================================
+   FLETXES
+========================================================= */
 
 .car-arrow{
 
@@ -825,17 +952,17 @@ nav.main-nav a:hover{
 
   transform:translateY(-50%);
 
-  z-index:2;
+  z-index:5;
 
-  width:34px;
+  width:36px;
 
-  height:34px;
+  height:36px;
 
   border-radius:999px;
 
   border:2px solid var(--ink);
 
-  background:rgba(255,255,255,.92);
+  background:rgba(255,255,255,.95);
 
   font-weight:700;
 
@@ -850,7 +977,7 @@ nav.main-nav a:hover{
 
   background:var(--lime);
 
-  transform:translateY(-50%) scale(1.08);
+  transform:translateY(-50%) scale(1.1);
 }
 
 .car-arrow.prev{
@@ -862,7 +989,9 @@ nav.main-nav a:hover{
 }
 
 
-/* DOTS */
+/* =========================================================
+   DOTS
+========================================================= */
 
 .car-dots{
 
@@ -879,6 +1008,8 @@ nav.main-nav a:hover{
   justify-content:center;
 
   gap:5px;
+
+  z-index:6;
 }
 
 .car-dots span{
@@ -900,7 +1031,9 @@ nav.main-nav a:hover{
 }
 
 
-/* PROJECT TEXT */
+/* =========================================================
+   PROJECT TEXT
+========================================================= */
 
 .project-preview{
 
@@ -913,8 +1046,18 @@ nav.main-nav a:hover{
 
   font-size:1.15rem;
 
-  margin-bottom:.4rem;
+  margin-bottom:.5rem;
+
+  transition:color .2s ease;
 }
+
+.project-card:hover .project-preview h3{
+
+  color:var(--pink);
+}
+
+
+/* TAG */
 
 .project-preview .tag{
 
@@ -924,33 +1067,56 @@ nav.main-nav a:hover{
 
   font-weight:700;
 
+  color:var(--ink);
+
   background:var(--lime);
+
+  border:1.5px solid var(--ink);
 
   border-radius:999px;
 
-  padding:.2rem .7rem;
+  padding:.25rem .75rem;
 
-  margin-bottom:.6rem;
+  margin-bottom:.7rem;
 }
+
+
+/* SHORT */
 
 .project-preview .short{
 
   font-size:.9rem;
 
   line-height:1.4;
+
+  color:#555;
 }
 
+
+/* VEURE MÉS */
+
 .project-preview .more-label{
+
+  color:var(--pink);
 
   font-weight:700;
 
   font-size:.85rem;
 
-  margin-top:.8rem;
+  margin-top:1rem;
+
+  transition:.2s ease;
+}
+
+.project-preview:hover .more-label{
+
+  transform:translateX(4px);
 }
 
 
-/* DETAILS */
+/* =========================================================
+   DETAILS
+========================================================= */
 
 .project-details{
 
@@ -972,8 +1138,10 @@ nav.main-nav a:hover{
   margin:1rem 0;
 }
 
-.project-details video,
-.project-details iframe{
+
+/* Vídeo dins dels detalls d'Urban Fabrics */
+
+.project-details video{
 
   width:100%;
 
@@ -984,6 +1152,10 @@ nav.main-nav a:hover{
   aspect-ratio:16/9;
 
   background:#000;
+
+  display:block;
+
+  margin-top:1rem;
 }
 
 
@@ -1129,6 +1301,16 @@ footer{
     display:none;
   }
 
+  .hero-intro{
+
+    max-width:100%;
+  }
+
+  .hero-claim{
+
+    max-width:600px;
+  }
+
 }
 
 
@@ -1182,10 +1364,26 @@ footer{
     padding:0 1rem;
   }
 
+  .hero-intro > p:first-child{
+
+    font-size:.9rem;
+
+    padding:.6rem 1rem;
+  }
+
+  .hero-claim{
+
+    font-size:.78rem !important;
+
+    padding:.9rem 1rem;
+  }
+
 }
 
 
-/* Respectar usuaris que prefereixen menys animacions */
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce){
 
@@ -1205,6 +1403,7 @@ footer{
 }
 
 </style>
+
 </head>
 
 
@@ -1217,32 +1416,50 @@ footer{
 
 <header>
 
-  <div class="logo">TEIA</div>
+  <div
+    class="logo"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})">
+
+    TEIA
+
+  </div>
+
 
   <nav class="main-nav">
 
-    <a href="#about"
-       data-i18n
-       data-ca="Sobre mi"
-       data-es="Sobre mí"
-       data-en="About me">
-       Sobre mi
+    <a
+      href="#about"
+      data-i18n
+      data-ca="Sobre mi"
+      data-es="Sobre mí"
+      data-en="About me">
+
+      Sobre mi
+
     </a>
 
-    <a href="#projects"
-       data-i18n
-       data-ca="Projectes"
-       data-es="Proyectos"
-       data-en="Projects">
-       Projectes
+
+    <a
+      href="#projects"
+      data-i18n
+      data-ca="Projectes"
+      data-es="Proyectos"
+      data-en="Projects">
+
+      Projectes
+
     </a>
 
-    <a href="#contact"
-       data-i18n
-       data-ca="Contacte"
-       data-es="Contacto"
-       data-en="Contact">
-       Contacte
+
+    <a
+      href="#contact"
+      data-i18n
+      data-ca="Contacte"
+      data-es="Contacto"
+      data-en="Contact">
+
+      Contacte
+
     </a>
 
   </nav>
@@ -1250,16 +1467,26 @@ footer{
 
   <div class="lang-switch">
 
-    <button data-lang-btn="ca" class="active">
+    <button
+      data-lang-btn="ca"
+      class="active">
+
       CAT
+
     </button>
 
-    <button data-lang-btn="es">
+    <button
+      data-lang-btn="es">
+
       ES
+
     </button>
 
-    <button data-lang-btn="en">
+    <button
+      data-lang-btn="en">
+
       EN
+
     </button>
 
   </div>
@@ -1286,7 +1513,9 @@ footer{
       data-ca="TEIA TURON"
       data-es="TEIA TURON"
       data-en="TEIA TURON">
+
       TEIA TURON
+
     </h1>
 
 
@@ -1525,26 +1754,11 @@ footer{
       data-cat="paid">
 
 
-      <!-- VÍDEO PRINCIPAL YOUTUBE -->
-
-      <div class="youtube-video">
-
-        <iframe
-          src="https://www.youtube.com/embed/9w3DgJkT8Q0"
-          title="Campanya Carnet Jove 2025"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-
-      </div>
-
-
-      <!-- CARRUSEL D'IMATGES -->
-
       <div
         class="carousel"
-        data-folder="carnetjove">
+        data-folder="carnetjove"
+        data-video-type="youtube"
+        data-video="https://www.youtube.com/embed/9w3DgJkT8Q0">
 
         <button
           class="car-arrow prev"
@@ -1641,38 +1855,6 @@ footer{
 
         </p>
 
-
-        <!-- VÍDEO YOUTUBE DINS DE MÉS INFORMACIÓ -->
-
-        <div class="project-video">
-
-          <iframe
-            src="https://www.youtube.com/embed/KlsNxD-eNKk"
-            title="Carnet Jove 2025"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <!-- VÍDEO LOCAL QUE PUJARÀS A GITHUB -->
-
-        <div class="project-video">
-
-          <video controls>
-
-            <source
-              src="videos/carnetjove-3.mp4"
-              type="video/mp4">
-
-            El teu navegador no pot reproduir aquest vídeo.
-
-          </video>
-
-        </div>
-
       </div>
 
     </article>
@@ -1680,16 +1862,19 @@ footer{
 
 
     <!-- =====================================================
-         PAID 2
+         PAID 2 — EL PREGÓN
     ====================================================== -->
 
     <article
       class="project-card"
       data-cat="paid">
 
+
       <div
         class="carousel"
-        data-folder="pregon">
+        data-folder="pregon"
+        data-video-type="local"
+        data-video="videos/pregon.mp4">
 
         <button
           class="car-arrow prev"
@@ -1786,19 +1971,6 @@ footer{
 
         </p>
 
-
-        <video controls>
-
-          <source
-            src="videos/pregon.mp4"
-            type="video/mp4">
-
-          <source
-            src="videos/pregon-1.mp4"
-            type="video/mp4">
-
-        </video>
-
       </div>
 
     </article>
@@ -1806,12 +1978,13 @@ footer{
 
 
     <!-- =====================================================
-         ACADEMIC 1
+         ACADEMIC 1 — DEVESA
     ====================================================== -->
 
     <article
       class="project-card"
       data-cat="academic">
+
 
       <div
         class="carousel"
@@ -1819,7 +1992,8 @@ footer{
 
         <button
           class="car-arrow prev"
-          onclick="event.stopPropagation()">
+          onclick="event.stopPropagation()"
+          aria-label="Imatge anterior">
 
           ‹
 
@@ -1829,7 +2003,8 @@ footer{
 
         <button
           class="car-arrow next"
-          onclick="event.stopPropagation()">
+          onclick="event.stopPropagation()"
+          aria-label="Imatge següent">
 
           ›
 
@@ -1910,19 +2085,6 @@ footer{
 
         </p>
 
-
-        <video controls>
-
-          <source
-            src="videos/devesa.mp4"
-            type="video/mp4">
-
-          <source
-            src="videos/devesa-1.mp4"
-            type="video/mp4">
-
-        </video>
-
       </div>
 
     </article>
@@ -1930,12 +2092,13 @@ footer{
 
 
     <!-- =====================================================
-         ACADEMIC 2
+         ACADEMIC 2 — GIROCLETA
     ====================================================== -->
 
     <article
       class="project-card"
       data-cat="academic">
+
 
       <div
         class="carousel"
@@ -1943,7 +2106,8 @@ footer{
 
         <button
           class="car-arrow prev"
-          onclick="event.stopPropagation()">
+          onclick="event.stopPropagation()"
+          aria-label="Imatge anterior">
 
           ‹
 
@@ -1953,7 +2117,8 @@ footer{
 
         <button
           class="car-arrow next"
-          onclick="event.stopPropagation()">
+          onclick="event.stopPropagation()"
+          aria-label="Imatge següent">
 
           ›
 
@@ -2034,19 +2199,6 @@ footer{
 
         </p>
 
-
-        <video controls>
-
-          <source
-            src="videos/girocleta.mp4"
-            type="video/mp4">
-
-          <source
-            src="videos/girocleta-1.mp4"
-            type="video/mp4">
-
-        </video>
-
       </div>
 
     </article>
@@ -2054,12 +2206,13 @@ footer{
 
 
     <!-- =====================================================
-         ACADEMIC 3
+         ACADEMIC 3 — URBAN FABRICS
     ====================================================== -->
 
     <article
       class="project-card"
       data-cat="academic">
+
 
       <div
         class="carousel"
@@ -2067,7 +2220,8 @@ footer{
 
         <button
           class="car-arrow prev"
-          onclick="event.stopPropagation()">
+          onclick="event.stopPropagation()"
+          aria-label="Imatge anterior">
 
           ‹
 
@@ -2077,7 +2231,8 @@ footer{
 
         <button
           class="car-arrow next"
-          onclick="event.stopPropagation()">
+          onclick="event.stopPropagation()"
+          aria-label="Imatge següent">
 
           ›
 
@@ -2159,15 +2314,15 @@ footer{
         </p>
 
 
+        <!-- VÍDEO URBAN FABRICS -->
+
         <video controls>
 
           <source
-            src="videos/urbanfabrics.mp4"
-            type="video/mp4">
+            src="videos/urbanfabrics.mp4.mov"
+            type="video/quicktime">
 
-          <source
-            src="videos/urbanfabrics-1.mp4"
-            type="video/mp4">
+          El teu navegador no pot reproduir aquest vídeo.
 
         </video>
 
@@ -2178,20 +2333,24 @@ footer{
 
 
     <!-- =====================================================
-         ACADEMIC 4
+         ACADEMIC 4 — VALENTES I ACOMPANYADES
     ====================================================== -->
 
     <article
       class="project-card"
       data-cat="academic">
 
+
       <div
         class="carousel"
-        data-folder="valentes">
+        data-folder="valentes"
+        data-video-type="youtube"
+        data-video="https://www.youtube.com/embed/3F-JGPksnVY">
 
         <button
           class="car-arrow prev"
-          onclick="event.stopPropagation()">
+          onclick="event.stopPropagation()"
+          aria-label="Imatge anterior">
 
           ‹
 
@@ -2201,7 +2360,8 @@ footer{
 
         <button
           class="car-arrow next"
-          onclick="event.stopPropagation()">
+          onclick="event.stopPropagation()"
+          aria-label="Imatge següent">
 
           ›
 
@@ -2281,19 +2441,6 @@ footer{
           Encarregada de la direcció d'ajudant, direcció d'art i coherència visual per a la producció d'un espot publicitari per a l'ONG Valentes i Acompanyades, de conscienciació contra els matrimonis infantils i forçats.
 
         </p>
-
-
-        <video controls>
-
-          <source
-            src="videos/valentes.mp4"
-            type="video/mp4">
-
-          <source
-            src="videos/valentes-1.mp4"
-            type="video/mp4">
-
-        </video>
 
       </div>
 
@@ -2492,7 +2639,7 @@ function toggleProject(previewEl){
 
 
 /* =========================================================
-   CARRUSELS
+   COMPROVAR IMATGES
 ========================================================= */
 
 function probeImage(src){
@@ -2520,6 +2667,104 @@ function probeImage(src){
 }
 
 
+
+/* =========================================================
+   CREAR VÍDEO YOUTUBE
+========================================================= */
+
+function createYouTubeSlide(src){
+
+  var slide =
+    document.createElement('div');
+
+  slide.className =
+    'slide video-slide';
+
+
+  var iframe =
+    document.createElement('iframe');
+
+  iframe.src = src;
+
+  iframe.title = 'Project video';
+
+  iframe.allow =
+    'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+
+  iframe.allowFullscreen = true;
+
+
+  slide.appendChild(
+    iframe
+  );
+
+
+  return slide;
+
+}
+
+
+
+/* =========================================================
+   CREAR VÍDEO LOCAL
+========================================================= */
+
+function createLocalVideoSlide(src){
+
+  var slide =
+    document.createElement('div');
+
+  slide.className =
+    'slide video-slide';
+
+
+  var video =
+    document.createElement('video');
+
+  video.controls = true;
+
+  video.preload = 'metadata';
+
+
+  var source =
+    document.createElement('source');
+
+  source.src = src;
+
+
+  if(src.endsWith('.mov')){
+
+    source.type =
+      'video/quicktime';
+
+  }else{
+
+    source.type =
+      'video/mp4';
+
+  }
+
+
+  video.appendChild(
+    source
+  );
+
+
+  slide.appendChild(
+    video
+  );
+
+
+  return slide;
+
+}
+
+
+
+/* =========================================================
+   CARRUSELS
+========================================================= */
+
 document.querySelectorAll(
   '.carousel'
 ).forEach(function(car){
@@ -2536,6 +2781,8 @@ document.querySelectorAll(
 
   var candidates = [];
 
+
+  /* Buscar imatges 1-8 */
 
   for(
     var i = 1;
@@ -2568,28 +2815,53 @@ document.querySelectorAll(
     dots.innerHTML = '';
 
 
-    if(found.length === 0){
+    /*
+       Primer afegim el vídeo,
+       si el projecte en té.
+    */
 
-      var empty =
-        document.createElement('div');
+    var videoType =
+      car.dataset.videoType || '';
 
-      empty.className =
-        'slide';
+    var videoSrc =
+      car.dataset.video || '';
 
-      empty.textContent =
-        'Encara no hi ha fotos';
+
+    if(videoSrc){
+
+      var videoSlide;
+
+
+      if(videoType === 'youtube'){
+
+        videoSlide =
+          createYouTubeSlide(
+            videoSrc
+          );
+
+      }else{
+
+        videoSlide =
+          createLocalVideoSlide(
+            videoSrc
+          );
+
+      }
+
 
       track.appendChild(
-        empty
+        videoSlide
       );
-
-      return;
 
     }
 
 
+    /*
+       Després afegim totes les imatges
+    */
+
     found.forEach(
-      function(src, idx){
+      function(src){
 
         var slide =
           document.createElement(
@@ -2620,31 +2892,79 @@ document.querySelectorAll(
           slide
         );
 
-
-        var dot =
-          document.createElement(
-            'span'
-          );
-
-
-        if(idx === 0){
-
-          dot.className =
-            'on';
-
-        }
-
-
-        dots.appendChild(
-          dot
-        );
-
       }
     );
 
 
+    /*
+       Nombre total de diapositives
+    */
+
+    var totalSlides =
+      track.children.length;
+
+
+    if(totalSlides === 0){
+
+      var empty =
+        document.createElement('div');
+
+      empty.className =
+        'slide';
+
+      empty.textContent =
+        'Encara no hi ha fotos';
+
+      track.appendChild(
+        empty
+      );
+
+      return;
+
+    }
+
+
+    /*
+       Crear punts
+    */
+
+    for(
+      var d = 0;
+      d < totalSlides;
+      d++
+    ){
+
+      var dot =
+        document.createElement(
+          'span'
+        );
+
+
+      if(d === 0){
+
+        dot.className =
+          'on';
+
+      }
+
+
+      dots.appendChild(
+        dot
+      );
+
+    }
+
+
+    /*
+       Posició inicial
+    */
+
     var index = 0;
 
+
+    /*
+       Actualitzar carrusel
+    */
 
     function update(){
 
@@ -2670,6 +2990,10 @@ document.querySelectorAll(
     }
 
 
+    /*
+       FLETXA ESQUERRA
+    */
+
     car.querySelector(
       '.prev'
     ).addEventListener(
@@ -2682,15 +3006,19 @@ document.querySelectorAll(
           (
             index -
             1 +
-            found.length
+            totalSlides
           ) %
-          found.length;
+          totalSlides;
 
         update();
 
       }
     );
 
+
+    /*
+       FLETXA DRETA
+    */
 
     car.querySelector(
       '.next'
@@ -2705,7 +3033,7 @@ document.querySelectorAll(
             index +
             1
           ) %
-          found.length;
+          totalSlides;
 
         update();
 
