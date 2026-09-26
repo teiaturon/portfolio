@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Teia Turon — Book / Portfolio</title>
+<title>Teia Turon — Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
 
 
 <style>
@@ -21,23 +21,25 @@
 ========================================================= */
 
 :root{
+
   --pink:#FF2E9E;
   --lilac:#C6A8FF;
   --lime:#D4FF4D;
   --ink:#171417;
   --cream:#FFF7EE;
   --blue:#8ED8FF;
+
 }
 
 
 /* =========================================================
-   GENERAL
+   RESET
 ========================================================= */
 
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
+  box-sizing:border-box;
 }
 
 html{
@@ -45,20 +47,15 @@ html{
 }
 
 body{
-  font-family:'Space Grotesk', sans-serif;
-  background:var(--cream);
-  color:var(--ink);
-  overflow-x:hidden;
-}
 
-h1,
-h2,
-h3,
-.display{
-  font-family:'Unbounded', sans-serif;
-  font-weight:900;
-  line-height:1.05;
-  letter-spacing:-0.01em;
+  font-family:"Space Grotesk",sans-serif;
+
+  background:var(--cream);
+
+  color:var(--ink);
+
+  overflow-x:hidden;
+
 }
 
 a{
@@ -66,9 +63,385 @@ a{
   text-decoration:none;
 }
 
-img{
-  max-width:100%;
-  display:block;
+button{
+  font-family:inherit;
+}
+
+
+/* =========================================================
+   CAMERA INTRO
+========================================================= */
+
+.camera-intro{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:9999;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:var(--pink);
+
+  overflow:hidden;
+
+  animation:
+    introFadeOut .5s ease forwards 2.15s;
+
+}
+
+
+/* CAMERA */
+
+.camera{
+
+  position:relative;
+
+  width:240px;
+
+  height:155px;
+
+  opacity:0;
+
+  transform:
+    translateY(40px)
+    rotate(-4deg)
+    scale(.85);
+
+  animation:
+    cameraEnter .7s cubic-bezier(.2,.8,.2,1) forwards .15s,
+    cameraShoot .25s ease-in-out forwards 1.05s;
+
+}
+
+
+/* CAMERA BODY */
+
+.camera-body{
+
+  position:absolute;
+
+  left:0;
+
+  bottom:0;
+
+  width:240px;
+
+  height:125px;
+
+  background:var(--cream);
+
+  border:4px solid var(--ink);
+
+  border-radius:18px;
+
+  box-shadow:9px 10px 0 var(--ink);
+
+}
+
+
+/* TOP */
+
+.camera-top{
+
+  position:absolute;
+
+  width:75px;
+
+  height:25px;
+
+  top:-17px;
+
+  left:38px;
+
+  background:var(--cream);
+
+  border:4px solid var(--ink);
+
+  border-bottom:0;
+
+  border-radius:12px 12px 0 0;
+
+  z-index:2;
+
+}
+
+
+/* LENS */
+
+.camera-lens{
+
+  position:absolute;
+
+  width:82px;
+
+  height:82px;
+
+  left:50%;
+
+  top:50%;
+
+  transform:translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:var(--lilac);
+
+  border:5px solid var(--ink);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  box-shadow:
+    inset 0 0 0 8px var(--cream);
+
+}
+
+
+.lens-inner{
+
+  width:35px;
+
+  height:35px;
+
+  border-radius:50%;
+
+  background:var(--ink);
+
+  border:5px solid var(--pink);
+
+}
+
+
+/* FLASH */
+
+.camera-flash{
+
+  position:absolute;
+
+  width:30px;
+
+  height:22px;
+
+  top:18px;
+
+  right:20px;
+
+  background:var(--lime);
+
+  border:3px solid var(--ink);
+
+  border-radius:5px;
+
+}
+
+
+/* SHUTTER */
+
+.camera-shutter{
+
+  position:absolute;
+
+  width:25px;
+
+  height:25px;
+
+  top:-13px;
+
+  right:35px;
+
+  border-radius:50%;
+
+  background:var(--pink);
+
+  border:3px solid var(--ink);
+
+}
+
+
+/* PHOTO FLASH */
+
+.camera-flash-screen{
+
+  position:absolute;
+
+  inset:0;
+
+  background:white;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  animation:
+    cameraFlash .35s ease-out forwards 1.15s;
+
+}
+
+
+/* CAMERA ANIMATIONS */
+
+@keyframes cameraEnter{
+
+  0%{
+
+    opacity:0;
+
+    transform:
+      translateY(40px)
+      rotate(-8deg)
+      scale(.8);
+
+  }
+
+  100%{
+
+    opacity:1;
+
+    transform:
+      translateY(0)
+      rotate(-4deg)
+      scale(1);
+
+  }
+
+}
+
+
+@keyframes cameraShoot{
+
+  0%{
+
+    transform:
+      translateY(0)
+      rotate(-4deg)
+      scale(1);
+
+  }
+
+  45%{
+
+    transform:
+      translateY(4px)
+      rotate(-4deg)
+      scale(.96);
+
+  }
+
+  100%{
+
+    transform:
+      translateY(0)
+      rotate(-4deg)
+      scale(1);
+
+  }
+
+}
+
+
+@keyframes cameraFlash{
+
+  0%{
+    opacity:0;
+  }
+
+  25%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+  }
+
+}
+
+
+@keyframes introFadeOut{
+
+  0%{
+
+    opacity:1;
+
+    visibility:visible;
+
+  }
+
+  100%{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+  }
+
+}
+
+
+/* =========================================================
+   POLAROID INTRO
+========================================================= */
+
+.hero-photo .polaroid{
+
+  animation:
+    polaroidReveal .8s cubic-bezier(.2,.8,.2,1) forwards 1.25s;
+
+  opacity:0;
+
+  transform:
+    translateY(-80px)
+    rotate(-8deg)
+    scale(.8);
+
+}
+
+
+@keyframes polaroidReveal{
+
+  0%{
+
+    opacity:0;
+
+    transform:
+      translateY(-80px)
+      rotate(-8deg)
+      scale(.8);
+
+  }
+
+  65%{
+
+    opacity:1;
+
+    transform:
+      translateY(12px)
+      rotate(6deg)
+      scale(1.03);
+
+  }
+
+  100%{
+
+    opacity:1;
+
+    transform:
+      translateY(0)
+      rotate(4deg)
+      scale(1);
+
+  }
+
 }
 
 
@@ -77,76 +450,136 @@ img{
 ========================================================= */
 
 header{
-  position:sticky;
+
+  position:fixed;
+
   top:0;
-  z-index:50;
+  left:0;
+
+  width:100%;
+
+  z-index:1000;
+
+  padding:22px 35px;
 
   display:flex;
-  align-items:center;
+
   justify-content:space-between;
 
-  padding:1rem 1.5rem;
+  align-items:center;
 
-  background:var(--cream);
-  border-bottom:3px solid var(--ink);
+  mix-blend-mode:multiply;
+
 }
+
 
 .logo{
-  font-family:'Unbounded';
+
+  font-family:"Unbounded",sans-serif;
+
+  font-size:20px;
+
   font-weight:900;
-  font-size:1.4rem;
+
   cursor:pointer;
 
-  transition:.25s ease;
+  transition:.3s ease;
+
 }
+
 
 .logo:hover{
-  color:var(--pink);
-  transform:translateY(-2px);
+
+  transform:rotate(-5deg) scale(1.05);
+
 }
 
-nav.main-nav{
+
+.nav{
+
   display:flex;
-  gap:1.2rem;
-  font-weight:500;
+
+  align-items:center;
+
+  gap:28px;
+
 }
 
-nav.main-nav a{
-  transition:.2s ease;
-}
 
-nav.main-nav a:hover{
-  color:var(--pink);
-  transform:translateY(-2px);
-}
+.nav a{
 
-.lang-switch{
-  display:flex;
-  gap:.4rem;
-}
+  font-size:13px;
 
-.lang-switch button{
-  font-family:'Space Grotesk';
   font-weight:700;
-  font-size:.8rem;
+
+  text-transform:uppercase;
+
+  letter-spacing:.05em;
+
+  position:relative;
+
+}
+
+
+.nav a::after{
+
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  bottom:-5px;
+
+  width:0;
+
+  height:2px;
+
+  background:var(--ink);
+
+  transition:.3s ease;
+
+}
+
+
+.nav a:hover::after{
+
+  width:100%;
+
+}
+
+
+.languages{
+
+  display:flex;
+
+  gap:6px;
+
+}
+
+
+.languages button{
 
   border:2px solid var(--ink);
-  background:transparent;
-  border-radius:999px;
 
-  padding:.25rem .7rem;
+  background:transparent;
+
+  padding:5px 8px;
+
   cursor:pointer;
 
-  transition:.2s ease;
+  font-size:10px;
+
+  font-weight:700;
+
 }
 
-.lang-switch button:hover{
-  transform:translateY(-2px);
-}
 
-.lang-switch button.active{
+.languages button.active{
+
   background:var(--ink);
+
   color:var(--cream);
+
 }
 
 
@@ -156,413 +589,285 @@ nav.main-nav a:hover{
 
 .hero{
 
-  min-height:82vh;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  gap:5rem;
-
-  padding:4rem 6vw;
-
-  position:relative;
+  min-height:100vh;
 
   background:var(--pink);
 
-  color:var(--ink);
+  position:relative;
 
   overflow:hidden;
+
+  display:grid;
+
+  grid-template-columns:1.3fr .7fr;
+
+  align-items:center;
+
+  padding:120px 7vw 80px;
+
 }
 
-
-/* Decoració */
 
 .hero::before{
+
   content:"✦";
 
   position:absolute;
 
-  top:12%;
-  left:6%;
+  font-size:200px;
 
-  font-size:5rem;
+  right:-20px;
 
-  color:var(--lime);
+  bottom:-60px;
 
-  transform:rotate(-15deg);
+  font-family:"Unbounded";
 
-  font-family:'Unbounded';
+  opacity:.12;
 
-  z-index:1;
-}
+  transform:rotate(15deg);
 
-.hero::after{
-  content:"✦";
-
-  position:absolute;
-
-  bottom:12%;
-  right:7%;
-
-  font-size:4rem;
-
-  color:var(--ink);
-
-  transform:rotate(18deg);
-
-  z-index:1;
 }
 
 
-/* Etiqueta */
-
-.hero-decoration{
-  position:absolute;
-
-  top:20%;
-  right:10%;
-
-  font-family:'Unbounded';
-
-  font-size:.65rem;
-
-  font-weight:700;
-
-  padding:.6rem 1rem;
-
-  border:2px solid var(--ink);
-
-  border-radius:999px;
-
-  transform:rotate(8deg);
-
-  z-index:2;
-}
-
-
-/* HERO TEXT */
-
-.hero-text{
-
-  flex:0 1 650px;
-
-  text-align:center;
+.hero-content{
 
   position:relative;
 
-  z-index:3;
-}
-
-.hero h1{
-
-  font-size:clamp(3rem,8vw,7rem);
-
-  cursor:default;
-
-  display:inline-block;
-
-  transition:color .2s ease;
-}
-
-.hero h1:hover{
-  animation:wiggle .45s ease-in-out;
-  color:var(--cream);
-}
-
-
-/* WIGGLE */
-
-@keyframes wiggle{
-
-  0%{
-    transform:rotate(0deg);
-  }
-
-  20%{
-    transform:rotate(-3deg) translateX(-2px);
-  }
-
-  40%{
-    transform:rotate(3deg) translateX(2px);
-  }
-
-  60%{
-    transform:rotate(-2deg) translateX(-1px);
-  }
-
-  80%{
-    transform:rotate(2deg) translateX(1px);
-  }
-
-  100%{
-    transform:rotate(0deg);
-  }
+  z-index:2;
 
 }
 
 
-/* =========================================================
-   NOU ESTIL DEL TEXT DEL HERO
-========================================================= */
+.hero-label{
 
-.hero-intro{
-
-  max-width:620px;
-
-  margin:1.7rem auto 0;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-
-  gap:1rem;
-}
-
-
-/* Estudiant de Publicitat */
-
-.hero-intro > p:first-child{
-
-  display:inline-block;
-
-  background:#fff;
-
-  border:3px solid var(--ink);
-
-  border-radius:999px;
-
-  padding:.65rem 1.3rem;
-
-  font-size:1.05rem;
-
-  line-height:1.3;
-
-  font-weight:500;
-
-  box-shadow:4px 4px 0 rgba(0,0,0,.15);
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    background .25s ease;
-}
-
-.hero-intro > p:first-child:hover{
-
-  transform:translateY(-4px) rotate(-1deg);
-
-  box-shadow:7px 7px 0 var(--ink);
-
-  background:var(--cream);
-}
-
-
-/* Frase creativitat */
-
-.hero-claim{
-
-  width:100%;
-
-  background:var(--lime);
-
-  border:3px solid var(--ink);
-
-  border-radius:18px;
-
-  padding:1rem 1.5rem;
-
-  font-family:'Unbounded', sans-serif;
-
-  font-size:1rem !important;
+  font-size:14px;
 
   font-weight:700;
 
-  line-height:1.35 !important;
+  text-transform:uppercase;
 
-  box-shadow:6px 6px 0 var(--ink);
+  margin-bottom:25px;
 
-  transform:rotate(-1deg);
+  display:flex;
 
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    background .25s ease;
-}
+  align-items:center;
 
-.hero-claim::before{
-  content:"✦ ";
-}
+  gap:10px;
 
-.hero-claim::after{
-  content:" ✦";
-}
-
-.hero-claim:hover{
-
-  transform:rotate(1deg) translateY(-5px);
-
-  box-shadow:10px 10px 0 var(--ink);
-
-  background:#e1ff6a;
 }
 
 
-/* CTA */
-
-.cta-btn{
+.hero-label span{
 
   display:inline-block;
 
-  margin-top:2rem;
+  animation:
+    starSpin 5s linear infinite;
+
+}
+
+
+@keyframes starSpin{
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+
+.hero h1{
+
+  font-family:"Unbounded",sans-serif;
+
+  font-size:clamp(55px,9vw,150px);
+
+  line-height:.88;
+
+  letter-spacing:-.07em;
+
+  font-weight:900;
+
+  cursor:default;
+
+  transition:.25s ease;
+
+}
+
+
+.hero h1:hover{
+
+  transform:
+    rotate(-2deg)
+    translateX(8px);
+
+  color:var(--cream);
+
+}
+
+
+.hero-subtitle{
+
+  display:inline-block;
+
+  margin-top:30px;
+
+  background:var(--lime);
+
+  padding:12px 18px;
+
+  font-size:14px;
+
+  font-weight:700;
+
+  transform:rotate(-2deg);
+
+}
+
+
+.hero-claim{
+
+  max-width:600px;
+
+  margin-top:28px;
+
+  font-size:20px;
+
+  line-height:1.4;
+
+}
+
+
+.cv-button{
+
+  display:inline-flex;
+
+  margin-top:35px;
+
+  align-items:center;
+
+  gap:10px;
+
+  padding:15px 22px;
 
   background:var(--ink);
 
   color:var(--cream);
 
+  font-size:13px;
+
   font-weight:700;
 
-  padding:1rem 2rem;
+  text-transform:uppercase;
 
-  border-radius:999px;
+  transition:.3s ease;
 
-  width:fit-content;
-
-  border:3px solid var(--ink);
-
-  box-shadow:5px 5px 0 var(--lilac);
-
-  transition:
-    transform .25s ease,
-    background .25s ease,
-    color .25s ease,
-    box-shadow .25s ease;
 }
 
-.cta-btn:hover{
+
+.cv-button:hover{
 
   background:var(--cream);
 
   color:var(--ink);
 
-  transform:translateY(-5px);
+  transform:translateY(-5px) rotate(-2deg);
 
-  box-shadow:8px 8px 0 var(--ink);
 }
 
 
-/* FOTO HERO */
+/* =========================================================
+   HERO PHOTO
+========================================================= */
 
 .hero-photo{
-
-  flex:0 0 auto;
 
   display:flex;
 
   justify-content:center;
 
+  align-items:center;
+
   position:relative;
 
   z-index:3;
+
 }
+
 
 .polaroid{
 
-  background:#fff;
+  width:320px;
 
-  padding:15px 15px 48px;
+  background:white;
 
-  border-radius:4px;
+  padding:15px 15px 45px;
 
-  box-shadow:0 18px 40px rgba(0,0,0,.3);
+  box-shadow:
+    10px 12px 0 var(--ink);
 
   transform:rotate(4deg);
 
-  width:320px;
-
   transition:.3s ease;
+
+  cursor:pointer;
+
 }
+
 
 .polaroid:hover{
 
-  transform:rotate(1deg) scale(1.03);
+  transform:
+    rotate(1deg)
+    scale(1.03)
+    translateY(-8px);
 
-  box-shadow:0 25px 50px rgba(0,0,0,.35);
+  box-shadow:
+    15px 17px 0 var(--ink);
+
 }
 
-.polaroid .photo-frame{
+
+.polaroid-image{
 
   width:100%;
 
   height:390px;
 
-  border-radius:2px;
-
   overflow:hidden;
 
   background:var(--lilac);
 
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
 }
 
-.polaroid .photo-frame img{
+
+.polaroid-image img{
 
   width:100%;
 
   height:100%;
 
   object-fit:cover;
-}
 
-.polaroid .photo-frame.no-photo img{
-  display:none;
-}
+  display:block;
 
-.polaroid .photo-frame.no-photo::after{
-
-  content:"📷 substitueix per la teva foto";
-
-  font-size:.7rem;
-
-  text-align:center;
-
-  padding:1rem;
-}
-
-.polaroid .caption{
-
-  font-family:'Unbounded';
-
-  font-size:.8rem;
-
-  text-align:center;
-
-  margin-top:12px;
 }
 
 
-/* SCALLOP */
+.polaroid-caption{
 
-.scallop{
+  position:absolute;
 
-  height:28px;
+  bottom:12px;
 
-  width:100%;
+  left:20px;
 
-  background-image:
-    radial-gradient(
-      circle at 14px 0,
-      transparent 14px,
-      var(--cream) 15px
-    );
+  font-family:"Space Grotesk";
 
-  background-size:28px 28px;
+  font-size:16px;
 
-  background-repeat:repeat-x;
+  font-weight:700;
+
 }
 
 
@@ -570,30 +875,95 @@ nav.main-nav a:hover{
    ABOUT
 ========================================================= */
 
-#about{
+.about{
 
-  padding:5rem 1.5rem;
+  padding:130px 7vw;
 
-  max-width:900px;
+  background:var(--cream);
 
-  margin:0 auto;
 }
 
-#about h2{
 
-  font-size:2.6rem;
+.section-header{
 
-  margin-bottom:1.5rem;
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-end;
+
+  gap:30px;
+
+  margin-bottom:70px;
+
 }
 
-#about p{
 
-  font-size:1.1rem;
+.section-number{
 
-  line-height:1.7;
+  font-family:"Unbounded";
 
-  max-width:70ch;
+  font-size:14px;
+
+  color:#777;
+
 }
+
+
+.section-title{
+
+  font-family:"Unbounded";
+
+  font-size:clamp(40px,6vw,85px);
+
+  line-height:.95;
+
+  letter-spacing:-.05em;
+
+}
+
+
+.about-grid{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:80px;
+
+}
+
+
+.about-text{
+
+  font-size:24px;
+
+  line-height:1.35;
+
+  max-width:700px;
+
+}
+
+
+.about-text strong{
+
+  background:var(--lime);
+
+  padding:0 5px;
+
+}
+
+
+.about-small{
+
+  font-size:16px;
+
+  line-height:1.6;
+
+  margin-top:30px;
+
+}
+
 
 .skills{
 
@@ -601,31 +971,38 @@ nav.main-nav a:hover{
 
   flex-wrap:wrap;
 
-  gap:.6rem;
+  gap:10px;
 
-  margin-top:2rem;
+  align-content:flex-start;
+
 }
 
-.skills span{
+
+.skill{
 
   border:2px solid var(--ink);
 
-  border-radius:999px;
+  padding:12px 16px;
 
-  padding:.4rem 1rem;
+  font-size:13px;
 
-  font-size:.85rem;
+  font-weight:700;
 
-  font-weight:500;
+  transition:.25s ease;
 
-  transition:.2s ease;
 }
 
-.skills span:hover{
 
-  background:var(--lime);
+.skill:hover{
 
-  transform:translateY(-2px);
+  background:var(--ink);
+
+  color:var(--cream);
+
+  transform:
+    rotate(-2deg)
+    translateY(-3px);
+
 }
 
 
@@ -633,61 +1010,48 @@ nav.main-nav a:hover{
    MARQUEE
 ========================================================= */
 
-.marquee-wrap{
-
-  background:var(--ink);
-
-  color:var(--lime);
+.marquee{
 
   overflow:hidden;
 
-  padding:.9rem 0;
+  background:var(--lime);
 
   border-top:3px solid var(--ink);
 
   border-bottom:3px solid var(--ink);
 
-  position:relative;
+  padding:20px 0;
+
 }
 
-.marquee{
+
+.marquee-track{
 
   display:flex;
 
   width:max-content;
 
-  white-space:nowrap;
+  animation:marquee 20s linear infinite;
 
-  animation:marqueeLoop 18s linear infinite;
-
-  will-change:transform;
 }
 
-.marquee-content{
-
-  display:flex;
-
-  flex-shrink:0;
-}
 
 .marquee span{
 
-  font-family:'Unbounded';
+  font-family:"Unbounded";
 
-  font-weight:700;
+  font-size:28px;
 
-  font-size:1.4rem;
+  font-weight:900;
 
-  padding:0 1.5rem;
+  white-space:nowrap;
 
-  flex-shrink:0;
+  padding-right:35px;
+
 }
 
-@keyframes marqueeLoop{
 
-  from{
-    transform:translateX(0);
-  }
+@keyframes marquee{
 
   to{
     transform:translateX(-50%);
@@ -700,86 +1064,67 @@ nav.main-nav a:hover{
    PROJECTS
 ========================================================= */
 
-#projects{
+.projects{
 
-  padding:5rem 1.5rem;
+  padding:130px 7vw;
 
-  max-width:1100px;
+  background:var(--lilac);
 
-  margin:0 auto;
-}
-
-#projects > h2{
-
-  font-size:2.6rem;
-
-  margin-bottom:2rem;
 }
 
 
-/* =========================================================
-   FILTERS
-========================================================= */
-
-.tabs{
+.project-filter{
 
   display:flex;
 
-  gap:.8rem;
+  gap:8px;
 
-  margin-bottom:2rem;
+  margin-bottom:55px;
 
   flex-wrap:wrap;
+
 }
 
-.tabs button{
 
-  font-family:'Space Grotesk';
-
-  font-weight:700;
+.filter-btn{
 
   border:2px solid var(--ink);
 
   background:transparent;
 
-  border-radius:999px;
-
-  padding:.5rem 1.2rem;
+  padding:10px 17px;
 
   cursor:pointer;
 
-  transition:.2s ease;
-}
+  font-size:12px;
 
-.tabs button:hover{
+  font-weight:700;
 
-  background:var(--lime);
+  text-transform:uppercase;
 
-  transform:translateY(-2px);
-}
+  transition:.25s ease;
 
-.tabs button.active{
-
-  background:var(--lilac);
-
-  box-shadow:4px 4px 0 var(--ink);
 }
 
 
-/* =========================================================
-   GRID
-========================================================= */
+.filter-btn:hover,
+.filter-btn.active{
 
-.project-grid{
+  background:var(--ink);
+
+  color:var(--cream);
+
+}
+
+
+.projects-grid{
 
   display:grid;
 
-  grid-template-columns:
-    repeat(auto-fit,minmax(300px,1fr));
+  grid-template-columns:repeat(2,1fr);
 
-  gap:1.5rem;
+  gap:30px;
 
-  align-items:start;
 }
 
 
@@ -789,162 +1134,240 @@ nav.main-nav a:hover{
 
 .project-card{
 
+  background:var(--cream);
+
   border:3px solid var(--ink);
 
-  border-radius:22px;
+  position:relative;
 
-  overflow:hidden;
+  transition:.3s ease;
 
-  background:#fff;
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
-
-  box-shadow:8px 9px 0 var(--ink);
 }
+
 
 .project-card:hover{
 
-  transform:translate(-2px,-5px);
+  transform:
+    translateY(-8px)
+    rotate(-.5deg);
 
-  box-shadow:12px 14px 0 var(--ink);
+  box-shadow:10px 10px 0 var(--ink);
+
+}
+
+
+.project-card.hidden{
+
+  display:none;
+
+}
+
+
+.project-media{
+
+  height:400px;
+
+  background:var(--blue);
+
+  position:relative;
+
+  overflow:hidden;
+
+}
+
+
+.project-media img{
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+  display:block;
+
+}
+
+
+.project-info{
+
+  padding:25px;
+
+}
+
+
+.project-type{
+
+  font-size:11px;
+
+  text-transform:uppercase;
+
+  font-weight:700;
+
+  margin-bottom:12px;
+
+  color:#666;
+
+}
+
+
+.project-title{
+
+  font-family:"Unbounded";
+
+  font-size:25px;
+
+  line-height:1.05;
+
+  margin-bottom:15px;
+
+}
+
+
+.project-short{
+
+  font-size:15px;
+
+  line-height:1.5;
+
+  max-width:600px;
+
+}
+
+
+.project-more{
+
+  margin-top:25px;
+
+  border-top:2px solid var(--ink);
+
+  padding-top:18px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  font-size:13px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+}
+
+
+.project-more span:last-child{
+
+  font-size:24px;
+
+  transition:.3s ease;
+
+}
+
+
+.project-card.open .project-more span:last-child{
+
+  transform:rotate(45deg);
+
 }
 
 
 /* =========================================================
-   PROJECT MEDIA / CAROUSEL
+   PROJECT DETAILS
 ========================================================= */
+
+.project-details{
+
+  display:none;
+
+  border-top:2px solid var(--ink);
+
+  padding:25px;
+
+}
+
+
+.project-card.open .project-details{
+
+  display:block;
+
+}
+
+
+.project-details p{
+
+  font-size:15px;
+
+  line-height:1.6;
+
+  margin-bottom:25px;
+
+}
+
+
+.project-gallery{
+
+  position:relative;
+
+  overflow:hidden;
+
+  background:#ddd;
+
+}
+
 
 .carousel{
 
   position:relative;
 
-  height:230px;
-
-  overflow:hidden;
-
-  background:#f0ebe5;
-
-  border-bottom:3px solid var(--ink);
-}
-
-.car-track{
-
-  display:flex;
-
-  height:100%;
-
-  transition:transform .35s ease;
-}
-
-.car-track .slide{
-
-  min-width:100%;
-
-  height:100%;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:.75rem;
-
-  text-align:center;
-
-  padding:.7rem;
-
-  background:#f0ebe5;
-
-  overflow:hidden;
 }
 
 
-/* IMATGES */
+.carousel-slide{
 
-.car-track .slide img{
+  display:none;
 
   width:100%;
 
-  height:100%;
+}
 
-  object-fit:contain;
 
-  object-position:center;
+.carousel-slide.active{
 
   display:block;
+
 }
 
 
-/* VÍDEOS */
-
-.car-track .slide.video-slide{
-
-  padding:0;
-
-  background:#000;
-}
-
-.car-track .slide.video-slide iframe{
+.carousel-slide img{
 
   width:100%;
 
-  height:100%;
-
-  border:0;
-
   display:block;
+
+  max-height:650px;
+
+  object-fit:cover;
+
 }
 
-.car-track .slide.video-slide video{
+
+.carousel-slide video{
 
   width:100%;
 
-  height:100%;
-
-  object-fit:contain;
-
   display:block;
 
-  background:#000;
-}
-
-
-/* COLORS ALTERNATIUS */
-
-.car-track .slide:nth-child(3n+1){
-
-  background:#f2e9ff;
-}
-
-.car-track .slide:nth-child(3n+2){
-
-  background:#fff0f7;
-}
-
-.car-track .slide:nth-child(3n+3){
-
-  background:#efffd8;
-}
-
-
-/* Evitem el background en vídeos */
-
-.car-track .slide.video-slide:nth-child(3n+1),
-.car-track .slide.video-slide:nth-child(3n+2),
-.car-track .slide.video-slide:nth-child(3n+3){
+  max-height:650px;
 
   background:#000;
+
 }
 
 
-/* =========================================================
-   FLETXES
-========================================================= */
-
-.car-arrow{
+.carousel-arrow{
 
   position:absolute;
 
@@ -952,210 +1375,71 @@ nav.main-nav a:hover{
 
   transform:translateY(-50%);
 
-  z-index:5;
+  width:42px;
 
-  width:36px;
-
-  height:36px;
-
-  border-radius:999px;
+  height:42px;
 
   border:2px solid var(--ink);
 
-  background:rgba(255,255,255,.95);
-
-  font-weight:700;
+  background:var(--cream);
 
   cursor:pointer;
 
-  line-height:1;
+  font-size:20px;
 
-  transition:.2s ease;
-}
+  z-index:5;
 
-.car-arrow:hover{
-
-  background:var(--lime);
-
-  transform:translateY(-50%) scale(1.1);
-}
-
-.car-arrow.prev{
-  left:8px;
-}
-
-.car-arrow.next{
-  right:8px;
 }
 
 
-/* =========================================================
-   DOTS
-========================================================= */
+.carousel-arrow.prev{
 
-.car-dots{
+  left:12px;
 
-  position:absolute;
+}
 
-  bottom:8px;
 
-  left:0;
+.carousel-arrow.next{
 
-  right:0;
+  right:12px;
+
+}
+
+
+.carousel-dots{
 
   display:flex;
 
   justify-content:center;
 
-  gap:5px;
+  gap:6px;
 
-  z-index:6;
+  padding:12px;
+
+  background:var(--cream);
+
 }
 
-.car-dots span{
 
-  width:7px;
+.carousel-dot{
 
-  height:7px;
+  width:8px;
+
+  height:8px;
 
   border-radius:50%;
 
-  background:rgba(255,255,255,.7);
-
-  border:1px solid var(--ink);
-}
-
-.car-dots span.on{
-
-  background:var(--ink);
-}
-
-
-/* =========================================================
-   PROJECT TEXT
-========================================================= */
-
-.project-preview{
+  background:#aaa;
 
   cursor:pointer;
 
-  padding:1.2rem;
-}
-
-.project-preview h3{
-
-  font-size:1.15rem;
-
-  margin-bottom:.5rem;
-
-  transition:color .2s ease;
-}
-
-.project-card:hover .project-preview h3{
-
-  color:var(--pink);
 }
 
 
-/* TAG */
+.carousel-dot.active{
 
-.project-preview .tag{
+  background:var(--ink);
 
-  display:inline-block;
-
-  font-size:.7rem;
-
-  font-weight:700;
-
-  color:var(--ink);
-
-  background:var(--lime);
-
-  border:1.5px solid var(--ink);
-
-  border-radius:999px;
-
-  padding:.25rem .75rem;
-
-  margin-bottom:.7rem;
-}
-
-
-/* SHORT */
-
-.project-preview .short{
-
-  font-size:.9rem;
-
-  line-height:1.4;
-
-  color:#555;
-}
-
-
-/* VEURE MÉS */
-
-.project-preview .more-label{
-
-  color:var(--pink);
-
-  font-weight:700;
-
-  font-size:.85rem;
-
-  margin-top:1rem;
-
-  transition:.2s ease;
-}
-
-.project-preview:hover .more-label{
-
-  transform:translateX(4px);
-}
-
-
-/* =========================================================
-   DETAILS
-========================================================= */
-
-.project-details{
-
-  padding:0 1.2rem 1.2rem;
-
-  border-top:2px dashed var(--ink);
-}
-
-.project-details[hidden]{
-  display:none;
-}
-
-.project-details p{
-
-  font-size:.95rem;
-
-  line-height:1.55;
-
-  margin:1rem 0;
-}
-
-
-/* Vídeo dins dels detalls d'Urban Fabrics */
-
-.project-details video{
-
-  width:100%;
-
-  border-radius:12px;
-
-  border:2px solid var(--ink);
-
-  aspect-ratio:16/9;
-
-  background:#000;
-
-  display:block;
-
-  margin-top:1rem;
 }
 
 
@@ -1163,62 +1447,83 @@ nav.main-nav a:hover{
    CONTACT
 ========================================================= */
 
-#contact{
+.contact{
 
-  background:var(--lime);
+  background:var(--pink);
 
-  padding:5rem 1.5rem;
+  padding:130px 7vw;
 
-  text-align:left;
+  position:relative;
+
+  overflow:hidden;
+
 }
 
-#contact .inner{
 
-  max-width:900px;
+.contact h2{
 
-  margin:0 auto;
+  font-family:"Unbounded";
+
+  font-size:clamp(45px,8vw,120px);
+
+  line-height:.9;
+
+  letter-spacing:-.06em;
+
+  max-width:1000px;
+
 }
 
-#contact h2{
 
-  font-size:2.8rem;
+.contact-intro{
 
-  margin-bottom:1.5rem;
+  font-size:20px;
+
+  margin-top:35px;
+
+  max-width:600px;
+
+  line-height:1.5;
+
 }
 
-.contact-buttons{
+
+.contact-links{
+
+  margin-top:50px;
 
   display:flex;
 
   flex-wrap:wrap;
 
-  gap:1rem;
+  gap:15px;
 
-  margin-top:1.5rem;
 }
 
-.contact-buttons a{
+
+.contact-link{
 
   border:3px solid var(--ink);
 
-  border-radius:999px;
-
-  padding:.8rem 1.6rem;
+  padding:15px 22px;
 
   font-weight:700;
 
-  background:#fff;
+  background:var(--cream);
 
-  transition:.2s ease;
+  transition:.25s ease;
+
 }
 
-.contact-buttons a:hover{
 
-  background:var(--ink);
+.contact-link:hover{
 
-  color:#fff;
+  background:var(--lime);
 
-  transform:translateY(-3px);
+  transform:
+    translateY(-5px)
+    rotate(-2deg);
+
 }
 
 
@@ -1228,11 +1533,18 @@ nav.main-nav a:hover{
 
 footer{
 
-  text-align:center;
+  background:var(--ink);
 
-  padding:1.5rem;
+  color:var(--cream);
 
-  font-size:.8rem;
+  padding:25px 7vw;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  font-size:12px;
+
 }
 
 
@@ -1244,71 +1556,52 @@ footer{
 
   header{
 
-    flex-wrap:wrap;
+    padding:18px 20px;
 
-    gap:1rem;
   }
 
-  nav.main-nav{
+  .nav{
 
-    order:3;
+    gap:14px;
 
-    width:100%;
+  }
 
-    justify-content:center;
+  .nav a{
+
+    font-size:11px;
+
   }
 
   .hero{
 
-    flex-direction:column;
+    grid-template-columns:1fr;
 
-    gap:3rem;
+    padding:130px 6vw 80px;
 
-    padding:4rem 1.5rem 5rem;
+    gap:80px;
 
-    min-height:auto;
-  }
-
-  .hero-text{
-
-    flex:none;
-
-    width:100%;
-  }
-
-  .hero h1{
-
-    font-size:clamp(2.7rem,12vw,5rem);
   }
 
   .hero-photo{
 
-    width:100%;
+    justify-content:flex-start;
+
+    padding-left:10%;
+
   }
 
-  .polaroid{
+  .about-grid{
 
-    width:min(330px,85vw);
+    grid-template-columns:1fr;
+
+    gap:50px;
+
   }
 
-  .polaroid .photo-frame{
+  .projects-grid{
 
-    height:400px;
-  }
+    grid-template-columns:1fr;
 
-  .hero-decoration{
-
-    display:none;
-  }
-
-  .hero-intro{
-
-    max-width:100%;
-  }
-
-  .hero-claim{
-
-    max-width:600px;
   }
 
 }
@@ -1318,64 +1611,108 @@ footer{
 
   header{
 
-    padding:.8rem 1rem;
+    padding:15px;
+
+  }
+
+  .nav a{
+
+    display:none;
+
   }
 
   .logo{
 
-    font-size:1.1rem;
+    font-size:16px;
+
   }
 
-  nav.main-nav{
+  .languages button{
 
-    gap:.8rem;
+    padding:4px 6px;
 
-    font-size:.9rem;
   }
 
-  .lang-switch button{
+  .hero{
 
-    padding:.2rem .55rem;
+    padding-left:20px;
 
-    font-size:.7rem;
+    padding-right:20px;
+
   }
 
-  #about,
-  #projects{
+  .hero h1{
 
-    padding:4rem 1.2rem;
-  }
+    font-size:52px;
 
-  #about h2,
-  #projects > h2{
-
-    font-size:2rem;
-  }
-
-  .carousel{
-
-    height:220px;
-  }
-
-  .marquee span{
-
-    font-size:1.05rem;
-
-    padding:0 1rem;
-  }
-
-  .hero-intro > p:first-child{
-
-    font-size:.9rem;
-
-    padding:.6rem 1rem;
   }
 
   .hero-claim{
 
-    font-size:.78rem !important;
+    font-size:17px;
 
-    padding:.9rem 1rem;
+  }
+
+  .polaroid{
+
+    width:270px;
+
+    padding:12px 12px 40px;
+
+  }
+
+  .polaroid-image{
+
+    height:330px;
+
+  }
+
+  .about,
+  .projects,
+  .contact{
+
+    padding:90px 20px;
+
+  }
+
+  .section-header{
+
+    margin-bottom:45px;
+
+  }
+
+  .about-text{
+
+    font-size:20px;
+
+  }
+
+  .project-media{
+
+    height:300px;
+
+  }
+
+  .project-title{
+
+    font-size:21px;
+
+  }
+
+  .camera{
+
+    transform:scale(.8);
+
+  }
+
+  footer{
+
+    padding:20px;
+
+    flex-direction:column;
+
+    gap:8px;
+
   }
 
 }
@@ -1385,7 +1722,7 @@ footer{
    REDUCED MOTION
 ========================================================= */
 
-@media (prefers-reduced-motion: reduce){
+@media(prefers-reduced-motion:reduce){
 
   *,
   *::before,
@@ -1395,12 +1732,14 @@ footer{
 
     animation-iteration-count:1 !important;
 
+    transition-duration:.01ms !important;
+
     scroll-behavior:auto !important;
 
-    transition-duration:.01ms !important;
   }
 
 }
+
 
 </style>
 
@@ -1411,82 +1750,80 @@ footer{
 
 
 <!-- =========================================================
+     CAMERA INTRO
+========================================================= -->
+
+<div class="camera-intro" id="cameraIntro">
+
+  <div class="camera">
+
+    <div class="camera-top"></div>
+
+    <div class="camera-body">
+
+      <div class="camera-flash"></div>
+
+      <div class="camera-lens">
+
+        <div class="lens-inner"></div>
+
+      </div>
+
+      <div class="camera-shutter"></div>
+
+    </div>
+
+  </div>
+
+  <div class="camera-flash-screen"></div>
+
+</div>
+
+
+
+<!-- =========================================================
      HEADER
 ========================================================= -->
 
 <header>
 
-  <div
-    class="logo"
-    onclick="window.scrollTo({top:0,behavior:'smooth'})">
-
+  <div class="logo" onclick="scrollToTop()">
     TEIA
-
   </div>
 
+  <nav class="nav">
 
-  <nav class="main-nav">
-
-    <a
-      href="#about"
-      data-i18n
-      data-ca="Sobre mi"
-      data-es="Sobre mí"
-      data-en="About me">
-
-      Sobre mi
-
+    <a href="#about" data-ca="SOBRE MI" data-es="SOBRE MÍ" data-en="ABOUT">
+      SOBRE MI
     </a>
 
-
-    <a
-      href="#projects"
-      data-i18n
-      data-ca="Projectes"
-      data-es="Proyectos"
-      data-en="Projects">
-
-      Projectes
-
+    <a href="#projects" data-ca="PROJECTES" data-es="PROYECTOS" data-en="PROJECTS">
+      PROJECTES
     </a>
 
-
-    <a
-      href="#contact"
-      data-i18n
-      data-ca="Contacte"
-      data-es="Contacto"
-      data-en="Contact">
-
-      Contacte
-
+    <a href="#contact" data-ca="CONTACTE" data-es="CONTACTO" data-en="CONTACT">
+      CONTACTE
     </a>
 
   </nav>
 
 
-  <div class="lang-switch">
+  <div class="languages">
 
     <button
-      data-lang-btn="ca"
-      class="active">
-
+      class="active"
+      data-language="ca">
       CAT
-
     </button>
 
     <button
-      data-lang-btn="es">
-
+      data-language="es">
       ES
-
     </button>
 
     <button
-      data-lang-btn="en">
-
+      data-language="en">
       EN
-
     </button>
 
   </div>
@@ -1499,85 +1836,93 @@ footer{
      HERO
 ========================================================= -->
 
-<section class="hero">
+<section class="hero" id="home">
 
-  <div class="hero-decoration">
-    creative mind ✦
-  </div>
+  <div class="hero-content">
 
+    <div class="hero-label">
 
-  <div class="hero-text">
+      <span>✦</span>
 
-    <h1
-      data-i18n
-      data-ca="TEIA TURON"
-      data-es="TEIA TURON"
-      data-en="TEIA TURON">
+      <span
+        data-ca="MENT CREATIVA"
+        data-es="MENTE CREATIVA"
+        data-en="CREATIVE MIND">
 
-      TEIA TURON
+        MENT CREATIVA
 
-    </h1>
-
-
-    <div class="hero-intro">
-
-      <p
-        data-i18n
-        data-ca="Estudiant de Publicitat i Relacions Públiques."
-        data-es="Estudiante de Publicidad y Relaciones Públicas."
-        data-en="Advertising and Public Relations student.">
-
-        Estudiant de Publicitat i Relacions Públiques.
-
-      </p>
-
-
-      <p
-        class="hero-claim"
-        data-i18n
-        data-ca="Perquè la creativitat és la intel·ligència divertint-se."
-        data-es="Porque la creatividad es la inteligencia divirtiéndose."
-        data-en="Because creativity is intelligence having fun.">
-
-        Perquè la creativitat és la intel·ligència divertint-se.
-
-      </p>
+      </span>
 
     </div>
 
 
+    <h1>
+      TEIA<br>
+      TURON
+    </h1>
+
+
+    <div
+      class="hero-subtitle"
+      data-ca="PUBLICITAT & RELACIONS PÚBLIQUES"
+      data-es="PUBLICIDAD & RELACIONES PÚBLICAS"
+      data-en="ADVERTISING & PUBLIC RELATIONS">
+
+      PUBLICITAT & RELACIONS PÚBLIQUES
+
+    </div>
+
+
+    <p
+      class="hero-claim"
+      data-ca="Perquè la creativitat és la intel·ligència divertint-se."
+      data-es="Porque la creatividad es la inteligencia divirtiéndose."
+      data-en="Because creativity is intelligence having fun.">
+
+      Perquè la creativitat és la intel·ligència divertint-se.
+
+    </p>
+
+
     <a
       href="cv.pdf"
-      target="_blank"
-      class="cta-btn"
-      data-i18n
-      data-ca="Veure el meu CV →"
-      data-es="Ver mi CV →"
-      data-en="See my CV →">
+      class="cv-button"
+      target="_blank">
 
-      Veure el meu CV →
+      <span
+        data-ca="VEURE CV"
+        data-es="VER CV"
+        data-en="VIEW CV">
+
+        VEURE CV
+
+      </span>
+
+      ↗
 
     </a>
 
   </div>
 
 
+
+  <!-- POLAROID -->
+
   <div class="hero-photo">
 
     <div class="polaroid">
 
-      <div class="photo-frame">
+      <div class="polaroid-image">
 
         <img
           src="images/teia.jpg"
-          alt="Teia Turon"
-          onerror="this.parentElement.classList.add('no-photo')">
+          alt="Teia Turon">
 
       </div>
 
-      <p class="caption">
+      <div class="polaroid-caption">
         Girona
-      </p>
+      </div>
 
     </div>
 
@@ -1586,49 +1931,85 @@ footer{
 </section>
 
 
-<div class="scallop"></div>
-
-
 
 <!-- =========================================================
      ABOUT
 ========================================================= -->
 
-<section id="about">
+<section class="about" id="about">
 
-  <h2
-    data-i18n
-    data-ca="Sobre mi"
-    data-es="Sobre mí"
-    data-en="About me">
+  <div class="section-header">
 
-    Sobre mi
+    <div class="section-number">
+      01 / ABOUT
+    </div>
 
-  </h2>
+    <h2
+      class="section-title"
+      data-ca="QUI<br>SÓC?"
+      data-es="¿QUIÉN<br>SOY?"
+      data-en="WHO<br>AM I?">
 
+      QUI<br>SÓC?
 
-  <p
-    data-i18n
+    </h2>
 
-    data-ca="Sí, ho has llegit bé, Teia: un nom poc habitual, curiós per a alguns i ple d'història — com jo. Sóc una futura creativa publicitària, amant de les idees que connecten i de les històries que deixen empremta. La comunicació és la meva zona de confort... però sortir-ne per explorar nous reptes? Encara més! Perquè et facis una idea... he viscut als Estats Units i a Itàlia, he treballat en atenció al client, he fet de cangur, he actuat davant de càmeres, he estat model i he treballat a la ràdio... així que he après a dir «sí» a cada oportunitat que m'ajuda a créixer: des de treballar com a recepcionista en un càmping perdut enmig del camp fins a protagonitzar una campanya publicitària difosa per tot Catalunya. El meu objectiu? Comunicar amb propòsit, estil i impacte. Parlem?"
-
-    data-es="Sí, lo has leído bien, Teia: un nombre poco común, curioso para algunos y lleno de historia — como yo. Soy una futura creativa publicitaria, amante de las ideas que conectan y de las historias que dejan huella. La comunicación es mi zona de confort... pero salir de ella para explorar nuevos retos, ¡todavía más! Para que te hagas una idea... he vivido en Estados Unidos y en Italia, he trabajado en atención al cliente, he hecho de canguro, he actuado delante de cámaras, he sido modelo y he trabajado en radio... así que he aprendido a decir «sí» a cada oportunidad que me ayuda a crecer: desde trabajar como recepcionista en un camping perdido en medio del campo hasta protagonizar una campaña publicitaria difundida por toda Cataluña. ¿Mi objetivo? Comunicar con propósito, estilo e impacto. ¿Hablamos?"
-
-    data-en="Yes, you read that right, Teia, a name that's uncommon, curious to some, and full of history — just like me. I'm a budding advertising creative, a lover of ideas that connect and stories that leave a lasting mark. Communication is my comfort zone... but stepping outside it to explore new challenges? Even more so! Just to give you an idea... I've lived in the United States, in Italy, worked in customer service, babysat, acted in front of cameras, been a model, been in radio... so I've learned to say “yes” to every opportunity that helps me grow, from working as a receptionist at a very remote countryside campsite to starring in an advertising campaign spread around Catalonia. My goal? To communicate with purpose, style, and impact. Wanna talk?">
-
-    Sí, ho has llegit bé, Teia: un nom poc habitual, curiós per a alguns i ple d'història — com jo. Sóc una futura creativa publicitària, amant de les idees que connecten i de les històries que deixen empremta. La comunicació és la meva zona de confort... però sortir-ne per explorar nous reptes? Encara més! Perquè et facis una idea... he viscut als Estats Units i a Itàlia, he treballat en atenció al client, he fet de cangur, he actuat davant de càmeres, he estat model i he treballat a la ràdio... així que he après a dir «sí» a cada oportunitat que m'ajuda a créixer: des de treballar com a recepcionista en un càmping perdut enmig del camp fins a protagonitzar una campanya publicitària difosa per tot Catalunya. El meu objectiu? Comunicar amb propòsit, estil i impacte. Parlem?
-
-  </p>
+  </div>
 
 
-  <div class="skills">
+  <div class="about-grid">
 
-    <span>Creativitat</span>
-    <span>Content Creation</span>
-    <span>Social Media</span>
-    <span>Public Speaking</span>
-    <span>Adaptabilitat</span>
-    <span>Treball en equip</span>
+
+    <div>
+
+      <p
+        class="about-text"
+        data-ca="Sóc una <strong>publicista en potència</strong>, apassionada per les idees que connecten i les històries que deixen empremta."
+        data-es="Soy una <strong>publicista en potencia</strong>, apasionada por las ideas que conectan y las historias que dejan huella."
+        data-en="I'm an <strong>aspiring advertising creative</strong>, passionate about ideas that connect and stories that leave a mark.">
+
+        Sóc una <strong>publicista en potència</strong>, apassionada per les idees que connecten i les històries que deixen empremta.
+
+      </p>
+
+
+      <p
+        class="about-small"
+        data-ca="La comunicació és la meva zona de confort, però sortir-ne per explorar nous reptes és el que em fa créixer. He viscut experiències internacionals, he treballat cara al públic i he actuat davant de càmeres. Ara vull portar aquesta curiositat i creativitat al món de la publicitat."
+        data-es="La comunicación es mi zona de confort, pero salir de ella para explorar nuevos retos es lo que me hace crecer. He vivido experiencias internacionales, he trabajado de cara al público y he actuado delante de cámaras. Ahora quiero llevar esta curiosidad y creatividad al mundo de la publicidad."
+        data-en="Communication is my comfort zone, but stepping outside it to explore new challenges is what makes me grow. I've had international experiences, worked with people and performed in front of cameras. Now I want to bring that curiosity and creativity into advertising.">
+
+        La comunicació és la meva zona de confort, però sortir-ne per explorar nous reptes és el que em fa créixer. He viscut experiències internacionals, he treballat cara al públic i he actuat davant de càmeres. Ara vull portar aquesta curiositat i creativitat al món de la publicitat.
+
+      </p>
+
+    </div>
+
+
+
+    <div class="skills">
+
+      <div class="skill">Creativitat</div>
+
+      <div class="skill">Content Creation</div>
+
+      <div class="skill">Social Media</div>
+
+      <div class="skill">Public Speaking</div>
+
+      <div class="skill">Adaptabilitat</div>
+
+      <div class="skill">Treball en equip</div>
+
+      <div class="skill">Art Direction</div>
+
+      <div class="skill">Creative Strategy</div>
+
+      <div class="skill">Branding</div>
+
+      <div class="skill">Digital Marketing</div>
+
+    </div>
 
   </div>
 
@@ -1640,46 +2021,25 @@ footer{
      MARQUEE
 ========================================================= -->
 
-<div class="marquee-wrap">
+<section class="marquee">
 
-  <div class="marquee">
+  <div class="marquee-track">
 
-    <div class="marquee-content">
+    <span>
+      PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
+    </span>
 
-      <span>
-        PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
-      </span>
+    <span>
+      PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
+    </span>
 
-      <span>
-        PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
-      </span>
-
-      <span>
-        PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
-      </span>
-
-    </div>
-
-
-    <div class="marquee-content">
-
-      <span>
-        PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
-      </span>
-
-      <span>
-        PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
-      </span>
-
-      <span>
-        PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
-      </span>
-
-    </div>
+    <span>
+      PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
+    </span>
 
   </div>
 
-</div>
+</section>
 
 
 
@@ -1687,54 +2047,64 @@ footer{
      PROJECTS
 ========================================================= -->
 
-<section id="projects">
+<section class="projects" id="projects">
 
-  <h2
-    data-i18n
-    data-ca="Projectes"
-    data-es="Proyectos"
-    data-en="Projects">
+  <div class="section-header">
 
-    Projectes
+    <div class="section-number">
+      02 / WORK
+    </div>
 
-  </h2>
+    <h2
+      class="section-title"
+      data-ca="PROJECTES"
+      data-es="PROYECTOS"
+      data-en="PROJECTS">
+
+      PROJECTES
+
+    </h2>
+
+  </div>
 
 
-  <div class="tabs">
+
+  <!-- FILTER -->
+
+  <div class="project-filter">
 
     <button
-      class="active"
+      class="filter-btn active"
       data-filter="all"
-      data-i18n
-      data-ca="Tots"
-      data-es="Todos"
-      data-en="All">
+      data-ca="TOTS"
+      data-es="TODOS"
+      data-en="ALL">
 
-      Tots
+      TOTS
 
     </button>
 
 
     <button
+      class="filter-btn"
       data-filter="paid"
-      data-i18n
-      data-ca="Pagats"
-      data-es="Pagados"
-      data-en="Paid">
+      data-ca="PAGATS"
+      data-es="PAGADOS"
+      data-en="PAID">
 
-      Pagats
+      PAGATS
 
     </button>
 
 
     <button
+      class="filter-btn"
       data-filter="academic"
-      data-i18n
-      data-ca="Acadèmics"
-      data-es="Académicos"
-      data-en="Academic">
+      data-ca="ACADÈMICS"
+      data-es="ACADÉMICOS"
+      data-en="ACADEMIC">
 
-      Acadèmics
+      ACADÈMICS
 
     </button>
 
@@ -1742,118 +2112,97 @@ footer{
 
 
 
-  <div class="project-grid">
+  <div class="projects-grid">
+
 
 
     <!-- =====================================================
-         PAID 1 — CARNET JOVE
+         CARNET JOVE
     ====================================================== -->
 
     <article
       class="project-card"
-      data-cat="paid">
+      data-category="paid">
 
+      <div class="project-media">
 
-      <div
-        class="carousel"
-        data-folder="carnetjove"
-        data-video-type="youtube"
-        data-video="https://www.youtube.com/embed/9w3DgJkT8Q0">
-
-        <button
-          class="car-arrow prev"
-          onclick="event.stopPropagation()"
-          aria-label="Imatge anterior">
-
-          ‹
-
-        </button>
-
-        <div class="car-track"></div>
-
-        <button
-          class="car-arrow next"
-          onclick="event.stopPropagation()"
-          aria-label="Imatge següent">
-
-          ›
-
-        </button>
-
-        <div class="car-dots"></div>
+        <img
+          src="images/carnetjove-1.jpg"
+          alt="Carnet Jove 2025">
 
       </div>
 
 
-      <div
-        class="project-preview"
-        onclick="toggleProject(this)">
+      <div class="project-info">
 
-        <span
-          class="tag"
-          data-i18n
-          data-ca="Pagat"
-          data-es="Pagado"
-          data-en="Paid">
+        <div class="project-type">
 
-          Pagat
+          <span
+            data-ca="PROJECTE PAGAT"
+            data-es="PROYECTO PAGADO"
+            data-en="PAID PROJECT">
 
-        </span>
+            PROJECTE PAGAT
+
+          </span>
+
+        </div>
 
 
-        <h3
-          data-i18n
-          data-ca="Actriu campanya Carnet Jove 2025"
-          data-es="Actriz campaña Carnet Jove 2025"
-          data-en="Actress, Catalan Youth Card campaign 2025">
-
-          Actriu campanya Carnet Jove 2025
-
+        <h3 class="project-title">
+          Carnet Jove 2025
         </h3>
 
 
         <p
-          class="short"
-          data-i18n
-          data-ca="Campanya de CaixaBank emesa a mitjans catalans."
-          data-es="Campaña de CaixaBank emitida en medios catalanes."
-          data-en="CaixaBank campaign broadcast across Catalan media.">
+          class="project-short"
+          data-ca="Campanya publicitària per al Carnet Jove 2025."
+          data-es="Campaña publicitaria para el Carnet Jove 2025."
+          data-en="Advertising campaign for Carnet Jove 2025.">
 
-          Campanya de CaixaBank emesa a mitjans catalans.
-
-        </p>
-
-
-        <p
-          class="more-label"
-          data-i18n
-          data-ca="+ Veure més"
-          data-es="+ Ver más"
-          data-en="+ See more">
-
-          + Veure més
+          Campanya publicitària per al Carnet Jove 2025.
 
         </p>
 
-      </div>
+
+        <div
+          class="project-more"
+          onclick="toggleProject(this)">
+
+          <span
+            data-ca="Veure més"
+            data-es="Ver más"
+            data-en="See more">
+
+            Veure més
+
+          </span>
+
+          <span>+</span>
+
+        </div>
 
 
-      <div
-        class="project-details"
-        hidden>
+        <div class="project-details">
 
-        <p
-          data-i18n
+          <p
+            data-ca="Participació en la campanya del Carnet Jove 2025 de CaixaBank, amb presència en mitjans i suports publicitaris de Catalunya. Vaig participar com a actriu, model i veu en off."
+            data-es="Participación en la campaña del Carnet Jove 2025 de CaixaBank, con presencia en medios y soportes publicitarios de Cataluña. Participé como actriz, modelo y voz en off."
+            data-en="Participation in CaixaBank's Carnet Jove 2025 campaign, appearing across Catalan media and advertising formats. I participated as an actress, model and voice-over artist.">
 
-          data-ca="Novembre 2025. Actriu a la campanya emesa a la televisió catalana, veu en off per a ràdio i televisió, model per newsletters, MUPIs, publicitat en autobusos i caixers de CaixaBank, entre altres formats."
+            Participació en la campanya del Carnet Jove 2025 de CaixaBank, amb presència en mitjans i suports publicitaris de Catalunya. Vaig participar com a actriu, model i veu en off.
 
-          data-es="Noviembre 2025. Actriz en la campaña emitida en televisión catalana, voz en off para radio y televisión, modelo para newsletters, MUPIs, publicidad en autobuses y cajeros de CaixaBank, entre otros formatos."
+          </p>
 
-          data-en="November 2025. Actress in the campaign broadcast on Catalan TV, voice-over for radio and TV, model for newsletters, MUPIs, bus advertising and CaixaBank ATMs, among other formats.">
 
-          Novembre 2025. Actriu a la campanya emesa a la televisió catalana, veu en off per a ràdio i televisió, model per newsletters, MUPIs, publicitat en autobusos i caixers de CaixaBank, entre altres formats.
+          <div
+            class="project-gallery"
+            data-folder="carnetjove"
+            data-youtube="https://www.youtube.com/embed/9w3DgJkT8Q0">
 
-        </p>
+          </div>
+
+        </div>
 
       </div>
 
@@ -1862,114 +2211,92 @@ footer{
 
 
     <!-- =====================================================
-         PAID 2 — EL PREGÓN
+         EL PREGÓN
     ====================================================== -->
 
     <article
       class="project-card"
-      data-cat="paid">
+      data-category="paid">
 
+      <div class="project-media">
 
-      <div
-        class="carousel"
-        data-folder="pregon"
-        data-video-type="local"
-        data-video="videos/pregon.mp4">
-
-        <button
-          class="car-arrow prev"
-          onclick="event.stopPropagation()"
-          aria-label="Imatge anterior">
-
-          ‹
-
-        </button>
-
-        <div class="car-track"></div>
-
-        <button
-          class="car-arrow next"
-          onclick="event.stopPropagation()"
-          aria-label="Imatge següent">
-
-          ›
-
-        </button>
-
-        <div class="car-dots"></div>
+        <img
+          src="images/pregon-1.jpg"
+          alt="El Pregón">
 
       </div>
 
 
-      <div
-        class="project-preview"
-        onclick="toggleProject(this)">
+      <div class="project-info">
 
-        <span
-          class="tag"
-          data-i18n
-          data-ca="Pagat"
-          data-es="Pagado"
-          data-en="Paid">
+        <div class="project-type">
 
-          Pagat
+          <span
+            data-ca="PROJECTE PAGAT"
+            data-es="PROYECTO PAGADO"
+            data-en="PAID PROJECT">
 
-        </span>
+            PROJECTE PAGAT
+
+          </span>
+
+        </div>
 
 
-        <h3
-          data-i18n
-          data-ca="Actriu a la pel·lícula “El Pregón”"
-          data-es="Actriz en la película “El Pregón”"
-          data-en="Actress in the film “El Pregón”">
-
-          Actriu a la pel·lícula “El Pregón”
-
+        <h3 class="project-title">
+          El Pregón
         </h3>
 
 
         <p
-          class="short"
-          data-i18n
-          data-ca="Pel·lícula espanyola, més de 2M€ de taquilla."
-          data-es="Película española, más de 2M€ de taquilla."
-          data-en="Spanish film, grossed over €2M in theaters.">
+          class="project-short"
+          data-ca="Participació com a actriu en el llargmetratge espanyol El Pregón."
+          data-es="Participación como actriz en el largometraje español El Pregón."
+          data-en="Acting role in the Spanish feature film El Pregón.">
 
-          Pel·lícula espanyola, més de 2M€ de taquilla.
-
-        </p>
-
-
-        <p
-          class="more-label"
-          data-i18n
-          data-ca="+ Veure més"
-          data-es="+ Ver más"
-          data-en="+ See more">
-
-          + Veure més
+          Participació com a actriu en el llargmetratge espanyol El Pregón.
 
         </p>
 
-      </div>
+
+        <div
+          class="project-more"
+          onclick="toggleProject(this)">
+
+          <span
+            data-ca="Veure més"
+            data-es="Ver más"
+            data-en="See more">
+
+            Veure més
+
+          </span>
+
+          <span>+</span>
+
+        </div>
 
 
-      <div
-        class="project-details"
-        hidden>
+        <div class="project-details">
 
-        <p
-          data-i18n
+          <p
+            data-ca="Vaig formar part del repartiment d'El Pregón, estrenada el març de 2016. La pel·lícula va recaptar prop de 2 milions d'euros a taquilla."
+            data-es="Formé parte del reparto de El Pregón, estrenada en marzo de 2016. La película recaudó cerca de 2 millones de euros en taquilla."
+            data-en="I was part of the cast of El Pregón, released in March 2016. The film grossed close to €2 million at the box office.">
 
-          data-ca="Març 2016. Vaig actuar a la pel·lícula, que va recaptar prop de 2 milions d'euros a les sales de cinema, situant-se entre les més vistes del cap de setmana d'estrena."
+            Vaig formar part del repartiment d'El Pregón, estrenada el març de 2016. La pel·lícula va recaptar prop de 2 milions d'euros a taquilla.
 
-          data-es="Marzo 2016. Actué en la película, que recaudó cerca de 2 millones de euros en cines, situándose entre las más vistas del fin de semana de estreno."
+          </p>
 
-          data-en="March 2016. I acted in the film, which grossed nearly €2 million in theaters, ranking among the most-watched films of its opening weekend.">
 
-          Març 2016. Vaig actuar a la pel·lícula, que va recaptar prop de 2 milions d'euros a les sales de cinema, situant-se entre les més vistes del cap de setmana d'estrena.
+          <div
+            class="project-gallery"
+            data-folder="pregon"
+            data-video="videos/pregon.mp4">
 
-        </p>
+          </div>
+
+        </div>
 
       </div>
 
@@ -1978,112 +2305,91 @@ footer{
 
 
     <!-- =====================================================
-         ACADEMIC 1 — DEVESA
+         DEVESETA
     ====================================================== -->
 
     <article
       class="project-card"
-      data-cat="academic">
+      data-category="academic">
 
+      <div class="project-media">
 
-      <div
-        class="carousel"
-        data-folder="devesa">
-
-        <button
-          class="car-arrow prev"
-          onclick="event.stopPropagation()"
-          aria-label="Imatge anterior">
-
-          ‹
-
-        </button>
-
-        <div class="car-track"></div>
-
-        <button
-          class="car-arrow next"
-          onclick="event.stopPropagation()"
-          aria-label="Imatge següent">
-
-          ›
-
-        </button>
-
-        <div class="car-dots"></div>
+        <img
+          src="images/devesa-1.jpg"
+          alt="Parc de la Devesa">
 
       </div>
 
 
-      <div
-        class="project-preview"
-        onclick="toggleProject(this)">
+      <div class="project-info">
 
-        <span
-          class="tag"
-          data-i18n
-          data-ca="Acadèmic"
-          data-es="Académico"
-          data-en="Academic">
+        <div class="project-type">
 
-          Acadèmic
+          <span
+            data-ca="PROJECTE ACADÈMIC"
+            data-es="PROYECTO ACADÉMICO"
+            data-en="ACADEMIC PROJECT">
 
-        </span>
+            PROJECTE ACADÈMIC
+
+          </span>
+
+        </div>
 
 
-        <h3
-          data-i18n
-          data-ca="Campanya per al Parc de la Devesa"
-          data-es="Campaña para el Parc de la Devesa"
-          data-en="Campaign for La Devesa Park">
-
-          Campanya per al Parc de la Devesa
-
+        <h3 class="project-title">
+          Devesa't
         </h3>
 
 
         <p
-          class="short"
-          data-i18n
-          data-ca="Identitat visual i campanya d'Instagram per a joves."
-          data-es="Identidad visual y campaña de Instagram para jóvenes."
-          data-en="Visual identity and Instagram campaign for young people.">
+          class="project-short"
+          data-ca="Identitat visual i campanya d'Instagram per apropar el Parc de la Devesa al públic jove."
+          data-es="Identidad visual y campaña de Instagram para acercar el Parc de la Devesa al público joven."
+          data-en="Visual identity and Instagram campaign designed to connect Parc de la Devesa with young audiences.">
 
-          Identitat visual i campanya d'Instagram per a joves.
-
-        </p>
-
-
-        <p
-          class="more-label"
-          data-i18n
-          data-ca="+ Veure més"
-          data-es="+ Ver más"
-          data-en="+ See more">
-
-          + Veure més
+          Identitat visual i campanya d'Instagram per apropar el Parc de la Devesa al públic jove.
 
         </p>
 
-      </div>
+
+        <div
+          class="project-more"
+          onclick="toggleProject(this)">
+
+          <span
+            data-ca="Veure més"
+            data-es="Ver más"
+            data-en="See more">
+
+            Veure més
+
+          </span>
+
+          <span>+</span>
+
+        </div>
 
 
-      <div
-        class="project-details"
-        hidden>
+        <div class="project-details">
 
-        <p
-          data-i18n
+          <p
+            data-ca="Projecte acadèmic desenvolupat entre setembre de 2024 i gener de 2025. L'objectiu era connectar el Parc de la Devesa amb adolescents d'entre 13 i 17 anys mitjançant reptes setmanals, una identitat visual pròpia i continguts per a xarxes socials."
+            data-es="Proyecto académico desarrollado entre septiembre de 2024 y enero de 2025. El objetivo era conectar el Parc de la Devesa con adolescentes de entre 13 y 17 años mediante retos semanales, una identidad visual propia y contenidos para redes sociales."
+            data-en="Academic project developed between September 2024 and January 2025. The goal was to connect Parc de la Devesa with teenagers aged 13–17 through weekly challenges, a distinctive visual identity and social media content.">
 
-          data-ca="Creació d'una identitat visual i campanya d'Instagram pensada per animar els joves a descobrir el Parc de la Devesa (Girona) a través de reptes setmanals. Responsable de la identitat visual i l'aspecte tècnic de la campanya."
+            Projecte acadèmic desenvolupat entre setembre de 2024 i gener de 2025. L'objectiu era connectar el Parc de la Devesa amb adolescents d'entre 13 i 17 anys mitjançant reptes setmanals, una identitat visual pròpia i continguts per a xarxes socials.
 
-          data-es="Creación de una identidad visual y campaña de Instagram pensada para animar a los jóvenes a descubrir el Parc de la Devesa (Girona) a través de retos semanales. Responsable de la identidad visual y el aspecto técnico de la campaña."
+          </p>
 
-          data-en="Creation of a visual identity and Instagram campaign designed to encourage young people to engage with La Devesa Park in Girona through weekly challenges. Responsible for the campaign's visual identity and technical execution.">
 
-          Creació d'una identitat visual i campanya d'Instagram pensada per animar els joves a descobrir el Parc de la Devesa (Girona) a través de reptes setmanals. Responsable de la identitat visual i l'aspecte tècnic de la campanya.
+          <div
+            class="project-gallery"
+            data-folder="devesa">
 
-        </p>
+          </div>
+
+        </div>
 
       </div>
 
@@ -2092,112 +2398,91 @@ footer{
 
 
     <!-- =====================================================
-         ACADEMIC 2 — GIROCLETA
+         CONCEPTES
     ====================================================== -->
 
     <article
       class="project-card"
-      data-cat="academic">
+      data-category="academic">
 
+      <div class="project-media">
 
-      <div
-        class="carousel"
-        data-folder="girocleta">
-
-        <button
-          class="car-arrow prev"
-          onclick="event.stopPropagation()"
-          aria-label="Imatge anterior">
-
-          ‹
-
-        </button>
-
-        <div class="car-track"></div>
-
-        <button
-          class="car-arrow next"
-          onclick="event.stopPropagation()"
-          aria-label="Imatge següent">
-
-          ›
-
-        </button>
-
-        <div class="car-dots"></div>
+        <img
+          src="images/girocleta-1.jpg"
+          alt="Conceptes publicitaris">
 
       </div>
 
 
-      <div
-        class="project-preview"
-        onclick="toggleProject(this)">
+      <div class="project-info">
 
-        <span
-          class="tag"
-          data-i18n
-          data-ca="Acadèmic"
-          data-es="Académico"
-          data-en="Academic">
+        <div class="project-type">
 
-          Acadèmic
+          <span
+            data-ca="PROJECTE ACADÈMIC"
+            data-es="PROYECTO ACADÉMICO"
+            data-en="ACADEMIC PROJECT">
 
-        </span>
+            PROJECTE ACADÈMIC
+
+          </span>
+
+        </div>
 
 
-        <h3
-          data-i18n
-          data-ca="Conceptes publicitaris ficticis"
-          data-es="Conceptos publicitarios ficticios"
-          data-en="Fictional advertising concepts">
-
+        <h3 class="project-title">
           Conceptes publicitaris ficticis
-
         </h3>
 
 
         <p
-          class="short"
-          data-i18n
-          data-ca="Girocleta, vi Sprintoso Moscato, pintallavis Maybelline."
-          data-es="Girocleta, vino Sprintoso Moscato, pintalabios Maybelline."
-          data-en="Girocleta, Sprintoso Moscato wine, Maybelline lipstick.">
+          class="project-short"
+          data-ca="Desenvolupament de diferents conceptes, campanyes i identitats visuals per a marques fictícies i reals."
+          data-es="Desarrollo de diferentes conceptos, campañas e identidades visuales para marcas ficticias y reales."
+          data-en="Development of different concepts, campaigns and visual identities for fictional and real brands.">
 
-          Girocleta, vi Sprintoso Moscato, pintallavis Maybelline.
-
-        </p>
-
-
-        <p
-          class="more-label"
-          data-i18n
-          data-ca="+ Veure més"
-          data-es="+ Ver más"
-          data-en="+ See more">
-
-          + Veure més
+          Desenvolupament de diferents conceptes, campanyes i identitats visuals per a marques fictícies i reals.
 
         </p>
 
-      </div>
+
+        <div
+          class="project-more"
+          onclick="toggleProject(this)">
+
+          <span
+            data-ca="Veure més"
+            data-es="Ver más"
+            data-en="See more">
+
+            Veure més
+
+          </span>
+
+          <span>+</span>
+
+        </div>
 
 
-      <div
-        class="project-details"
-        hidden>
+        <div class="project-details">
 
-        <p
-          data-i18n
+          <p
+            data-ca="Selecció de conceptes creatius desenvolupats durant diferents assignatures: Girocleta, Sprintoso Moscato i Maybelline. Cada proposta parteix d'una idea central i es desenvolupa mitjançant copywriting, direcció d'art i identitat visual."
+            data-es="Selección de conceptos creativos desarrollados durante diferentes asignaturas: Girocleta, Sprintoso Moscato y Maybelline. Cada propuesta parte de una idea central y se desarrolla mediante copywriting, dirección de arte e identidad visual."
+            data-en="A selection of creative concepts developed across different university projects: Girocleta, Sprintoso Moscato and Maybelline. Each proposal starts from a central idea and develops through copywriting, art direction and visual identity.">
 
-          data-ca="Desenvolupament de conceptes de campanya, redacció, identitats visuals i peces gràfiques adaptades a cada objectiu de comunicació: Girocleta (servei fictici de lloguer de bicicletes), el vi Sprintoso Moscato i el pintallavis Maybelline, entre altres."
+            Selecció de conceptes creatius desenvolupats durant diferents assignatures: Girocleta, Sprintoso Moscato i Maybelline. Cada proposta parteix d'una idea central i es desenvolupa mitjançant copywriting, direcció d'art i identitat visual.
 
-          data-es="Desarrollo de conceptos de campaña, redacción, identidades visuales y piezas gráficas adaptadas a cada objetivo de comunicación: Girocleta (servicio ficticio de alquiler de bicicletas), el vino Sprintoso Moscato y el pintalabios Maybelline, entre otros."
+          </p>
 
-          data-en="Development of campaign ideas, copywriting, visual identities and graphic pieces adapted to each communication objective: Girocleta (fictional bike-rental service), Sprintoso Moscato wine, and Maybelline lipstick, among others.">
 
-          Desenvolupament de conceptes de campanya, redacció, identitats visuals i peces gràfiques adaptades a cada objectiu de comunicació: Girocleta (servei fictici de lloguer de bicicletes), el vi Sprintoso Moscato i el pintallavis Maybelline, entre altres.
+          <div
+            class="project-gallery"
+            data-folder="girocleta">
 
-        </p>
+          </div>
+
+        </div>
 
       </div>
 
@@ -2206,125 +2491,92 @@ footer{
 
 
     <!-- =====================================================
-         ACADEMIC 3 — URBAN FABRICS
+         URBAN FABRICS
     ====================================================== -->
 
     <article
       class="project-card"
-      data-cat="academic">
+      data-category="academic">
 
+      <div class="project-media">
 
-      <div
-        class="carousel"
-        data-folder="urbanfabrics">
-
-        <button
-          class="car-arrow prev"
-          onclick="event.stopPropagation()"
-          aria-label="Imatge anterior">
-
-          ‹
-
-        </button>
-
-        <div class="car-track"></div>
-
-        <button
-          class="car-arrow next"
-          onclick="event.stopPropagation()"
-          aria-label="Imatge següent">
-
-          ›
-
-        </button>
-
-        <div class="car-dots"></div>
+        <img
+          src="images/urbanfabrics-1.jpg"
+          alt="Urban Fabrics">
 
       </div>
 
 
-      <div
-        class="project-preview"
-        onclick="toggleProject(this)">
+      <div class="project-info">
 
-        <span
-          class="tag"
-          data-i18n
-          data-ca="Acadèmic"
-          data-es="Académico"
-          data-en="Academic">
+        <div class="project-type">
 
-          Acadèmic
+          <span
+            data-ca="PROJECTE ACADÈMIC"
+            data-es="PROYECTO ACADÉMICO"
+            data-en="ACADEMIC PROJECT">
 
-        </span>
+            PROJECTE ACADÈMIC
+
+          </span>
+
+        </div>
 
 
-        <h3
-          data-i18n
-          data-ca="Revista Urban Fabrics"
-          data-es="Revista Urban Fabrics"
-          data-en="Urban Fabrics magazine">
-
-          Revista Urban Fabrics
-
+        <h3 class="project-title">
+          Urban Fabrics
         </h3>
 
 
         <p
-          class="short"
-          data-i18n
-          data-ca="Direcció d'art i estilisme per a una revista editorial."
-          data-es="Dirección de arte y estilismo para una revista editorial."
-          data-en="Art direction and styling for an editorial magazine.">
+          class="project-short"
+          data-ca="Creació d'una revista de moda i tendències amb direcció d'art, atrezzo i disseny gràfic."
+          data-es="Creación de una revista de moda y tendencias con dirección de arte, atrezo y diseño gráfico."
+          data-en="Creation of a fashion and trends magazine involving art direction, props and graphic design.">
 
-          Direcció d'art i estilisme per a una revista editorial.
-
-        </p>
-
-
-        <p
-          class="more-label"
-          data-i18n
-          data-ca="+ Veure més"
-          data-es="+ Ver más"
-          data-en="+ See more">
-
-          + Veure més
-
-        </p>
-
-      </div>
-
-
-      <div
-        class="project-details"
-        hidden>
-
-        <p
-          data-i18n
-
-          data-ca="Direcció d'art, estilisme de props i disseny gràfic per a la creació d'Urban Fabrics, revista editorial desenvolupada com a projecte acadèmic de publicitat."
-
-          data-es="Dirección de arte, estilismo de props y diseño gráfico para la creación de Urban Fabrics, revista editorial desarrollada como proyecto académico de publicidad."
-
-          data-en="Art direction, prop styling and graphic design for the creation of Urban Fabrics, an editorial magazine developed as part of an academic advertising project.">
-
-          Direcció d'art, estilisme de props i disseny gràfic per a la creació d'Urban Fabrics, revista editorial desenvolupada com a projecte acadèmic de publicitat.
+          Creació d'una revista de moda i tendències amb direcció d'art, atrezzo i disseny gràfic.
 
         </p>
 
 
-        <!-- VÍDEO URBAN FABRICS -->
+        <div
+          class="project-more"
+          onclick="toggleProject(this)">
 
-        <video controls>
+          <span
+            data-ca="Veure més"
+            data-es="Ver más"
+            data-en="See more">
 
-          <source
-            src="videos/urbanfabrics.mp4.mov"
-            type="video/quicktime">
+            Veure més
 
-          El teu navegador no pot reproduir aquest vídeo.
+          </span>
 
-        </video>
+          <span>+</span>
+
+        </div>
+
+
+        <div class="project-details">
+
+          <p
+            data-ca="Projecte acadèmic desenvolupat a la UdG. Em vaig encarregar de la direcció d'art, la selecció i preparació de l'atrezzo i part del disseny gràfic de la revista."
+            data-es="Proyecto académico desarrollado en la UdG. Me encargué de la dirección de arte, la selección y preparación del atrezo y parte del diseño gráfico de la revista."
+            data-en="Academic project developed at UdG. I was in charge of art direction, prop selection and styling, and part of the graphic design.">
+
+            Projecte acadèmic desenvolupat a la UdG. Em vaig encarregar de la direcció d'art, la selecció i preparació de l'atrezzo i part del disseny gràfic de la revista.
+
+          </p>
+
+
+          <div
+            class="project-gallery"
+            data-folder="urbanfabrics"
+            data-video="videos/urbanfabrics.mp4.mov">
+
+          </div>
+
+        </div>
 
       </div>
 
@@ -2333,114 +2585,92 @@ footer{
 
 
     <!-- =====================================================
-         ACADEMIC 4 — VALENTES I ACOMPANYADES
+         VALENTES I ACOMPANYADES
     ====================================================== -->
 
     <article
       class="project-card"
-      data-cat="academic">
+      data-category="academic">
 
+      <div class="project-media">
 
-      <div
-        class="carousel"
-        data-folder="valentes"
-        data-video-type="youtube"
-        data-video="https://www.youtube.com/embed/3F-JGPksnVY">
-
-        <button
-          class="car-arrow prev"
-          onclick="event.stopPropagation()"
-          aria-label="Imatge anterior">
-
-          ‹
-
-        </button>
-
-        <div class="car-track"></div>
-
-        <button
-          class="car-arrow next"
-          onclick="event.stopPropagation()"
-          aria-label="Imatge següent">
-
-          ›
-
-        </button>
-
-        <div class="car-dots"></div>
+        <img
+          src="images/valentes-1.jpg"
+          alt="Valentes i Acompanyades">
 
       </div>
 
 
-      <div
-        class="project-preview"
-        onclick="toggleProject(this)">
+      <div class="project-info">
 
-        <span
-          class="tag"
-          data-i18n
-          data-ca="Acadèmic"
-          data-es="Académico"
-          data-en="Academic">
+        <div class="project-type">
 
-          Acadèmic
+          <span
+            data-ca="PROJECTE ACADÈMIC"
+            data-es="PROYECTO ACADÉMICO"
+            data-en="ACADEMIC PROJECT">
 
-        </span>
+            PROJECTE ACADÈMIC
+
+          </span>
+
+        </div>
 
 
-        <h3
-          data-i18n
-          data-ca="Espot ONG Valentes i Acompanyades"
-          data-es="Espot ONG Valentes i Acompanyades"
-          data-en="NGO Valentes i Acompanyades spot">
-
-          Espot ONG Valentes i Acompanyades
-
+        <h3 class="project-title">
+          Valentes i Acompanyades
         </h3>
 
 
         <p
-          class="short"
-          data-i18n
-          data-ca="Direcció artística per a un espot de conscienciació."
-          data-es="Dirección artística para un spot de concienciación."
-          data-en="Art direction for an awareness campaign spot.">
+          class="project-short"
+          data-ca="Espot de conscienciació contra els matrimonis forçats infantils."
+          data-es="Spot de concienciación contra los matrimonios forzados infantiles."
+          data-en="Awareness campaign against child and forced marriages.">
 
-          Direcció artística per a un espot de conscienciació.
-
-        </p>
-
-
-        <p
-          class="more-label"
-          data-i18n
-          data-ca="+ Veure més"
-          data-es="+ Ver más"
-          data-en="+ See more">
-
-          + Veure més
+          Espot de conscienciació contra els matrimonis forçats infantils.
 
         </p>
 
-      </div>
+
+        <div
+          class="project-more"
+          onclick="toggleProject(this)">
+
+          <span
+            data-ca="Veure més"
+            data-es="Ver más"
+            data-en="See more">
+
+            Veure més
+
+          </span>
+
+          <span>+</span>
+
+        </div>
 
 
-      <div
-        class="project-details"
-        hidden>
+        <div class="project-details">
 
-        <p
-          data-i18n
+          <p
+            data-ca="Projecte per a l'ONG Valentes i Acompanyades, centrada en la lluita contra els matrimonis forçats infantils. Vaig assumir el rol de subdirectora, directora d'art i responsable de la coherència visual del projecte, incloent el teaser i l'storyboard."
+            data-es="Proyecto para la ONG Valentes i Acompanyades, centrada en la lucha contra los matrimonios forzados infantiles. Asumí el rol de subdirectora, directora de arte y responsable de la coherencia visual del proyecto, incluyendo el teaser y el storyboard."
+            data-en="Project for NGO Valentes i Acompanyades, focused on fighting child and forced marriages. I worked as assistant director, art director and visual consistency lead, including the teaser and storyboard.">
 
-          data-ca="Encarregada de la direcció d'ajudant, direcció d'art i coherència visual per a la producció d'un espot publicitari per a l'ONG Valentes i Acompanyades, de conscienciació contra els matrimonis infantils i forçats."
+            Projecte per a l'ONG Valentes i Acompanyades, centrada en la lluita contra els matrimonis forçats infantils. Vaig assumir el rol de subdirectora, directora d'art i responsable de la coherència visual del projecte, incloent el teaser i l'storyboard.
 
-          data-es="Encargada de la dirección de ayudante, dirección de arte y coherencia visual para la producción de un spot publicitario para la ONG Valentes i Acompanyades, de concienciación contra los matrimonios infantiles y forzados."
+          </p>
 
-          data-en="In charge of assistant direction, art direction and visual consistency for the production of an advertising spot for the NGO Valentes i Acompanyades, raising awareness against child and forced marriage.">
 
-          Encarregada de la direcció d'ajudant, direcció d'art i coherència visual per a la producció d'un espot publicitari per a l'ONG Valentes i Acompanyades, de conscienciació contra els matrimonis infantils i forçats.
+          <div
+            class="project-gallery"
+            data-folder="valentes"
+            data-youtube="https://www.youtube.com/embed/3F-JGPksnVY">
 
-        </p>
+          </div>
+
+        </div>
 
       </div>
 
@@ -2457,61 +2687,65 @@ footer{
      CONTACT
 ========================================================= -->
 
-<section id="contact">
+<section class="contact" id="contact">
 
-  <div class="inner">
-
-    <h2
-      data-i18n
-      data-ca="Parlem?"
-      data-es="¿Hablamos?"
-      data-en="Let's talk">
-
-      Parlem?
-
-    </h2>
+  <div class="section-number">
+    03 / CONTACT
+  </div>
 
 
-    <p
-      data-i18n
-      data-ca="Si vols col·laborar o simplement dir hola, escriu-me."
-      data-es="Si quieres colaborar o simplemente decir hola, escríbeme."
-      data-en="Want to collaborate or just say hi? Reach out.">
+  <h2
+    data-ca="FEM<br>ALGUNA<br>COSA?"
+    data-es="¿HACEMOS<br>ALGO<br>JUNTOS?"
+    data-en="LET'S<br>MAKE<br>SOMETHING?">
 
-      Si vols col·laborar o simplement dir hola, escriu-me.
+    FEM<br>
+    ALGUNA<br>
+    COSA?
 
-    </p>
-
-
-    <div class="contact-buttons">
-
-      <a href="mailto:turonteia1@gmail.com">
-        Email
-      </a>
+  </h2>
 
 
-      <a
-        href="https://instagram.com/teiaturon"
-        target="_blank">
+  <p
+    class="contact-intro"
+    data-ca="Si busques una persona curiosa, creativa i amb ganes de fer coses que tinguin sentit, parlem!"
+    data-es="Si buscas una persona curiosa, creativa y con ganas de hacer cosas que tengan sentido, ¡hablemos!"
+    data-en="If you're looking for someone curious, creative and eager to make meaningful things, let's talk!">
 
-        Instagram
+    Si busques una persona curiosa, creativa i amb ganes de fer coses que tinguin sentit, parlem!
 
-      </a>
+  </p>
 
 
-      <a
-        href="cv.pdf"
-        target="_blank"
-        data-i18n
-        data-ca="Descarrega el CV"
-        data-es="Descarga el CV"
-        data-en="Download CV">
+  <div class="contact-links">
 
-        Descarrega el CV
+    <a
+      class="contact-link"
+      href="mailto:turonteia1@gmail.com">
 
-      </a>
+      EMAIL ↗
 
-    </div>
+    </a>
+
+
+    <a
+      class="contact-link"
+      href="https://instagram.com/teiaturon"
+      target="_blank">
+
+      INSTAGRAM ↗
+
+    </a>
+
+
+    <a
+      class="contact-link"
+      href="cv.pdf"
+      target="_blank">
+
+      CV ↗
+
+    </a>
 
   </div>
 
@@ -2519,8 +2753,20 @@ footer{
 
 
 
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
-  © 2026 Teia Turon
+
+  <span>
+    © 2026 Teia Turon
+  </span>
+
+  <span>
+    Communicate with purpose, style & impact.
+  </span>
+
 </footer>
 
 
@@ -2529,108 +2775,224 @@ footer{
 
 
 /* =========================================================
-   IDIOMES
+   CAMERA INTRO
 ========================================================= */
 
-function setLanguage(lang){
+window.addEventListener("load", function(){
 
-  document.documentElement.setAttribute(
-    'data-lang',
-    lang
-  );
-
-  document.documentElement.lang = lang;
+  document.body.style.overflow = "hidden";
 
 
-  document.querySelectorAll('[data-i18n]')
-    .forEach(function(el){
+  setTimeout(function(){
 
-      var text =
-        el.getAttribute('data-' + lang);
+    document.body.style.overflow = "";
 
-      if(text){
 
-        el.textContent = text;
+    var intro =
+      document.getElementById("cameraIntro");
+
+
+    if(intro){
+
+      intro.remove();
+
+    }
+
+  },2700);
+
+});
+
+
+
+/* =========================================================
+   SCROLL TO TOP
+========================================================= */
+
+function scrollToTop(){
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:"smooth"
+
+  });
+
+}
+
+
+
+/* =========================================================
+   LANGUAGE SYSTEM
+========================================================= */
+
+let currentLanguage = "ca";
+
+
+function setLanguage(language){
+
+  currentLanguage = language;
+
+  document.documentElement.dataset.lang = language;
+
+
+  document.querySelectorAll("[data-language]").forEach(function(button){
+
+    button.classList.toggle(
+      "active",
+      button.dataset.language === language
+    );
+
+  });
+
+
+  document.querySelectorAll("[data-ca]").forEach(function(element){
+
+    let translation =
+      element.getAttribute("data-" + language);
+
+
+    if(translation !== null){
+
+      element.innerHTML = translation;
+
+    }
+
+  });
+
+}
+
+
+document.querySelectorAll("[data-language]").forEach(function(button){
+
+  button.addEventListener("click",function(){
+
+    setLanguage(
+      this.dataset.language
+    );
+
+  });
+
+});
+
+
+
+/* =========================================================
+   PROJECT FILTER
+========================================================= */
+
+document.querySelectorAll(".filter-btn").forEach(function(button){
+
+  button.addEventListener("click",function(){
+
+    let filter =
+      this.dataset.filter;
+
+
+    document.querySelectorAll(".filter-btn").forEach(function(btn){
+
+      btn.classList.remove("active");
+
+    });
+
+
+    this.classList.add("active");
+
+
+    document.querySelectorAll(".project-card").forEach(function(card){
+
+      if(
+        filter === "all" ||
+        card.dataset.category === filter
+      ){
+
+        card.classList.remove("hidden");
+
+      }else{
+
+        card.classList.add("hidden");
 
       }
 
     });
 
-
-  document.querySelectorAll(
-    '.lang-switch button'
-  ).forEach(function(btn){
-
-    btn.classList.toggle(
-      'active',
-      btn.dataset.langBtn === lang
-    );
-
   });
-
-}
-
-
-document.querySelectorAll(
-  '.lang-switch button'
-).forEach(function(btn){
-
-  btn.addEventListener(
-    'click',
-    function(){
-
-      setLanguage(
-        btn.dataset.langBtn
-      );
-
-    }
-  );
 
 });
 
 
 
 /* =========================================================
-   EXPANDIR PROJECTES
+   OPEN / CLOSE PROJECT
 ========================================================= */
 
-function toggleProject(previewEl){
+function toggleProject(element){
 
-  var details =
-    previewEl.nextElementSibling;
-
-  var isHidden =
-    details.hasAttribute('hidden');
+  const card =
+    element.closest(".project-card");
 
 
-  if(isHidden){
-
-    details.removeAttribute('hidden');
+  card.classList.toggle("open");
 
 
-    previewEl.querySelector(
-      '.more-label'
-    ).textContent =
+  const text =
+    element.querySelector("span:first-child");
 
-      document.documentElement.lang === 'ca'
-        ? '– Amagar'
 
-      : document.documentElement.lang === 'es'
-        ? '– Ocultar'
+  const plus =
+    element.querySelector("span:last-child");
 
-      : '– Hide';
 
+  if(card.classList.contains("open")){
+
+    plus.textContent = "×";
+
+
+    if(currentLanguage === "ca"){
+
+      text.textContent = "Amagar";
+
+    }
+
+    else if(currentLanguage === "es"){
+
+      text.textContent = "Ocultar";
+
+    }
+
+    else{
+
+      text.textContent = "Hide";
+
+    }
+
+
+    initialiseCarousel(
+      card.querySelector(".project-gallery")
+    );
 
   }else{
 
-    details.setAttribute(
-      'hidden',
-      ''
-    );
+    plus.textContent = "+";
 
-    setLanguage(
-      document.documentElement.lang
-    );
+
+    if(currentLanguage === "ca"){
+
+      text.textContent = "Veure més";
+
+    }
+
+    else if(currentLanguage === "es"){
+
+      text.textContent = "Ver más";
+
+    }
+
+    else{
+
+      text.textContent = "See more";
+
+    }
 
   }
 
@@ -2639,467 +3001,480 @@ function toggleProject(previewEl){
 
 
 /* =========================================================
-   COMPROVAR IMATGES
+   CREATE CAROUSEL
 ========================================================= */
 
-function probeImage(src){
+function initialiseCarousel(gallery){
 
-  return new Promise(function(resolve){
+  if(!gallery || gallery.dataset.loaded === "true"){
+    return;
+  }
 
-    var img = new Image();
+
+  gallery.dataset.loaded = "true";
+
+
+  const folder =
+    gallery.dataset.folder;
+
+
+  const youtube =
+    gallery.dataset.youtube;
+
+
+  const video =
+    gallery.dataset.video;
+
+
+  const carousel =
+    document.createElement("div");
+
+
+  carousel.className = "carousel";
+
+
+  const slides = [];
+
+
+  /* LOCAL VIDEO */
+
+  if(video){
+
+    const slide =
+      document.createElement("div");
+
+
+    slide.className =
+      "carousel-slide active";
+
+
+    const videoElement =
+      document.createElement("video");
+
+
+    videoElement.controls = true;
+
+    videoElement.playsInline = true;
+
+    videoElement.preload = "metadata";
+
+
+    const source =
+      document.createElement("source");
+
+
+    source.src = video;
+
+
+    if(
+      video.endsWith(".mov")
+    ){
+
+      source.type =
+        "video/quicktime";
+
+    }else{
+
+      source.type =
+        "video/mp4";
+
+    }
+
+
+    videoElement.appendChild(source);
+
+    slide.appendChild(videoElement);
+
+    carousel.appendChild(slide);
+
+    slides.push(slide);
+
+  }
+
+
+  /* YOUTUBE VIDEO */
+
+  if(youtube){
+
+    const slide =
+      document.createElement("div");
+
+
+    slide.className =
+      "carousel-slide";
+
+
+    const iframe =
+      document.createElement("iframe");
+
+
+    iframe.src = youtube;
+
+    iframe.width = "100%";
+
+    iframe.height = "500";
+
+    iframe.frameBorder = "0";
+
+    iframe.allow =
+      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+    iframe.allowFullscreen = true;
+
+
+    slide.appendChild(iframe);
+
+    carousel.appendChild(slide);
+
+    slides.push(slide);
+
+  }
+
+
+  /* IMAGES */
+
+  let imageCount = 0;
+
+
+  for(let i=1;i<=8;i++){
+
+    const imagePath =
+      "images/" +
+      folder +
+      "-" +
+      i +
+      ".jpg";
+
+
+    const img =
+      new Image();
+
+
+    img.src = imagePath;
+
 
     img.onload = function(){
 
-      resolve(src);
+      const slide =
+        document.createElement("div");
+
+
+      slide.className =
+        "carousel-slide";
+
+
+      const image =
+        document.createElement("img");
+
+
+      image.src =
+        imagePath;
+
+
+      image.alt =
+        folder +
+        " project image " +
+        i;
+
+
+      slide.appendChild(image);
+
+      carousel.appendChild(slide);
+
+      slides.push(slide);
+
+
+      imageCount++;
+
+
+      setupCarousel();
 
     };
-
-    img.onerror = function(){
-
-      resolve(null);
-
-    };
-
-    img.src = src;
-
-  });
-
-}
-
-
-
-/* =========================================================
-   CREAR VÍDEO YOUTUBE
-========================================================= */
-
-function createYouTubeSlide(src){
-
-  var slide =
-    document.createElement('div');
-
-  slide.className =
-    'slide video-slide';
-
-
-  var iframe =
-    document.createElement('iframe');
-
-  iframe.src = src;
-
-  iframe.title = 'Project video';
-
-  iframe.allow =
-    'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-
-  iframe.allowFullscreen = true;
-
-
-  slide.appendChild(
-    iframe
-  );
-
-
-  return slide;
-
-}
-
-
-
-/* =========================================================
-   CREAR VÍDEO LOCAL
-========================================================= */
-
-function createLocalVideoSlide(src){
-
-  var slide =
-    document.createElement('div');
-
-  slide.className =
-    'slide video-slide';
-
-
-  var video =
-    document.createElement('video');
-
-  video.controls = true;
-
-  video.preload = 'metadata';
-
-
-  var source =
-    document.createElement('source');
-
-  source.src = src;
-
-
-  if(src.endsWith('.mov')){
-
-    source.type =
-      'video/quicktime';
-
-  }else{
-
-    source.type =
-      'video/mp4';
 
   }
 
 
-  video.appendChild(
-    source
-  );
+  gallery.appendChild(carousel);
 
 
-  slide.appendChild(
-    video
-  );
+  function setupCarousel(){
 
-
-  return slide;
-
-}
-
-
-
-/* =========================================================
-   CARRUSELS
-========================================================= */
-
-document.querySelectorAll(
-  '.carousel'
-).forEach(function(car){
-
-  var folder =
-    car.dataset.folder || '';
-
-  var track =
-    car.querySelector('.car-track');
-
-  var dots =
-    car.querySelector('.car-dots');
-
-
-  var candidates = [];
-
-
-  /* Buscar imatges 1-8 */
-
-  for(
-    var i = 1;
-    i <= 8;
-    i++
-  ){
-
-    candidates.push(
-      'images/' +
-      folder +
-      '-' +
-      i +
-      '.jpg'
-    );
-
-  }
-
-
-  Promise.all(
-    candidates.map(probeImage)
-  ).then(function(results){
-
-
-    var found =
-      results.filter(Boolean);
-
-
-    track.innerHTML = '';
-
-    dots.innerHTML = '';
-
-
-    /*
-       Primer afegim el vídeo,
-       si el projecte en té.
-    */
-
-    var videoType =
-      car.dataset.videoType || '';
-
-    var videoSrc =
-      car.dataset.video || '';
-
-
-    if(videoSrc){
-
-      var videoSlide;
-
-
-      if(videoType === 'youtube'){
-
-        videoSlide =
-          createYouTubeSlide(
-            videoSrc
-          );
-
-      }else{
-
-        videoSlide =
-          createLocalVideoSlide(
-            videoSrc
-          );
-
-      }
-
-
-      track.appendChild(
-        videoSlide
-      );
-
-    }
-
-
-    /*
-       Després afegim totes les imatges
-    */
-
-    found.forEach(
-      function(src){
-
-        var slide =
-          document.createElement(
-            'div'
-          );
-
-        slide.className =
-          'slide';
-
-
-        var img =
-          document.createElement(
-            'img'
-          );
-
-
-        img.src = src;
-
-        img.alt = '';
-
-
-        slide.appendChild(
-          img
-        );
-
-
-        track.appendChild(
-          slide
-        );
-
-      }
-    );
-
-
-    /*
-       Nombre total de diapositives
-    */
-
-    var totalSlides =
-      track.children.length;
-
-
-    if(totalSlides === 0){
-
-      var empty =
-        document.createElement('div');
-
-      empty.className =
-        'slide';
-
-      empty.textContent =
-        'Encara no hi ha fotos';
-
-      track.appendChild(
-        empty
-      );
-
+    if(slides.length === 0){
       return;
-
     }
 
 
-    /*
-       Crear punts
-    */
+    /* remove previous controls */
 
-    for(
-      var d = 0;
-      d < totalSlides;
-      d++
-    ){
+    carousel
+      .querySelectorAll(
+        ".carousel-arrow,.carousel-dots"
+      )
+      .forEach(function(el){
 
-      var dot =
-        document.createElement(
-          'span'
-        );
+        el.remove();
+
+      });
 
 
-      if(d === 0){
+    let current = 0;
+
+
+    slides.forEach(function(slide,index){
+
+      slide.classList.toggle(
+        "active",
+        index === current
+      );
+
+    });
+
+
+    /* ARROWS */
+
+    if(slides.length > 1){
+
+      const prev =
+        document.createElement("button");
+
+
+      prev.className =
+        "carousel-arrow prev";
+
+
+      prev.innerHTML = "←";
+
+
+      const next =
+        document.createElement("button");
+
+
+      next.className =
+        "carousel-arrow next";
+
+
+      next.innerHTML = "→";
+
+
+      carousel.appendChild(prev);
+
+      carousel.appendChild(next);
+
+
+      prev.addEventListener("click",function(e){
+
+        e.stopPropagation();
+
+        current =
+          (current - 1 + slides.length)
+          % slides.length;
+
+
+        showSlide();
+
+      });
+
+
+      next.addEventListener("click",function(e){
+
+        e.stopPropagation();
+
+        current =
+          (current + 1)
+          % slides.length;
+
+
+        showSlide();
+
+      });
+
+
+      /* DOTS */
+
+      const dots =
+        document.createElement("div");
+
+
+      dots.className =
+        "carousel-dots";
+
+
+      slides.forEach(function(slide,index){
+
+        const dot =
+          document.createElement("span");
+
 
         dot.className =
-          'on';
-
-      }
+          "carousel-dot";
 
 
-      dots.appendChild(
-        dot
-      );
+        if(index === current){
+
+          dot.classList.add("active");
+
+        }
+
+
+        dot.addEventListener("click",function(e){
+
+          e.stopPropagation();
+
+          current = index;
+
+          showSlide();
+
+        });
+
+
+        dots.appendChild(dot);
+
+      });
+
+
+      gallery.appendChild(dots);
+
 
     }
 
 
-    /*
-       Posició inicial
-    */
+    function showSlide(){
 
-    var index = 0;
+      slides.forEach(function(slide,index){
 
-
-    /*
-       Actualitzar carrusel
-    */
-
-    function update(){
-
-      track.style.transform =
-        'translateX(-' +
-        (index * 100) +
-        '%)';
-
-
-      dots
-        .querySelectorAll('span')
-        .forEach(
-          function(d, di){
-
-            d.classList.toggle(
-              'on',
-              di === index
-            );
-
-          }
+        slide.classList.toggle(
+          "active",
+          index === current
         );
 
+      });
+
+
+      const dots =
+        gallery.querySelectorAll(
+          ".carousel-dot"
+        );
+
+
+      dots.forEach(function(dot,index){
+
+        dot.classList.toggle(
+          "active",
+          index === current
+        );
+
+      });
+
     }
 
+  }
 
-    /*
-       FLETXA ESQUERRA
-    */
-
-    car.querySelector(
-      '.prev'
-    ).addEventListener(
-      'click',
-      function(e){
-
-        e.stopPropagation();
-
-        index =
-          (
-            index -
-            1 +
-            totalSlides
-          ) %
-          totalSlides;
-
-        update();
-
-      }
-    );
+}
 
 
-    /*
-       FLETXA DRETA
-    */
 
-    car.querySelector(
-      '.next'
-    ).addEventListener(
-      'click',
-      function(e){
+/* =========================================================
+   PRELOAD PROJECT FIRST IMAGES
+========================================================= */
 
-        e.stopPropagation();
+document.querySelectorAll(".project-card").forEach(function(card){
 
-        index =
-          (
-            index +
-            1
-          ) %
-          totalSlides;
-
-        update();
-
-      }
-    );
+  const image =
+    card.querySelector(".project-media img");
 
 
-  });
+  if(image){
+
+    image.addEventListener("error",function(){
+
+      this.style.display = "none";
+
+    });
+
+  }
 
 });
 
 
 
 /* =========================================================
-   FILTRE PROJECTES
+   POLAROID CURSOR EFFECT
 ========================================================= */
 
-document.querySelectorAll(
-  '.tabs button'
-).forEach(function(btn){
+const polaroid =
+  document.querySelector(".polaroid");
 
-  btn.addEventListener(
-    'click',
-    function(){
 
-      document.querySelectorAll(
-        '.tabs button'
-      ).forEach(function(b){
+if(polaroid){
 
-        b.classList.remove(
-          'active'
-        );
+  polaroid.addEventListener("mousemove",function(e){
+
+    const rect =
+      polaroid.getBoundingClientRect();
+
+
+    const x =
+      e.clientX - rect.left;
+
+
+    const y =
+      e.clientY - rect.top;
+
+
+    const rotateX =
+      ((y / rect.height) - .5) * -6;
+
+
+    const rotateY =
+      ((x / rect.width) - .5) * 6;
+
+
+    polaroid.style.transform =
+      `
+      perspective(700px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      rotate(2deg)
+      scale(1.03)
+      `;
+
+  });
+
+
+  polaroid.addEventListener("mouseleave",function(){
+
+    polaroid.style.transform =
+      "rotate(4deg) scale(1)";
+
+  });
+
+}
+
+
+
+/* =========================================================
+   KEYBOARD ESCAPE
+========================================================= */
+
+document.addEventListener("keydown",function(e){
+
+  if(e.key === "Escape"){
+
+    document.querySelectorAll(".project-card.open")
+      .forEach(function(card){
+
+        card.classList.remove("open");
 
       });
 
-
-      btn.classList.add(
-        'active'
-      );
-
-
-      var filter =
-        btn.dataset.filter;
-
-
-      document.querySelectorAll(
-        '.project-card'
-      ).forEach(function(card){
-
-        card.style.display =
-          (
-            filter === 'all' ||
-            card.dataset.cat === filter
-          )
-            ? ''
-            : 'none';
-
-      });
-
-    }
-  );
+  }
 
 });
 
 
 </script>
 
+
 </body>
+
 </html>
