@@ -18,6 +18,7 @@
   --lime:#D4FF4D;
   --ink:#171417;
   --cream:#FFF7EE;
+  --blue:#8ED8FF;
 }
 
 *{
@@ -31,14 +32,14 @@ html{
 }
 
 body{
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', sans-serif;
   background:var(--cream);
   color:var(--ink);
   overflow-x:hidden;
 }
 
 h1,h2,h3,.display{
-  font-family:'Unbounded',sans-serif;
+  font-family:'Unbounded', sans-serif;
   font-weight:900;
   line-height:1.05;
   letter-spacing:-0.01em;
@@ -86,6 +87,10 @@ nav.main-nav{
   font-weight:500;
 }
 
+nav.main-nav a{
+  transition:.2s ease;
+}
+
 nav.main-nav a:hover{
   color:var(--pink);
 }
@@ -102,12 +107,16 @@ nav.main-nav a:hover{
 
   border:2px solid var(--ink);
   background:transparent;
-
   border-radius:999px;
 
   padding:.25rem .7rem;
-
   cursor:pointer;
+
+  transition:.2s ease;
+}
+
+.lang-switch button:hover{
+  transform:translateY(-2px);
 }
 
 .lang-switch button.active{
@@ -122,39 +131,45 @@ nav.main-nav a:hover{
 
 .hero{
 
-  min-height:calc(100vh - 75px);
+  min-height:82vh;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
+  gap:5rem;
+
+  padding:4rem 6vw;
+
   position:relative;
 
-  padding:5rem 5vw;
-
   background:var(--pink);
+
   color:var(--ink);
 
   overflow:hidden;
 }
 
 
-/* decoració */
+/* Decoració creativa */
 
 .hero::before{
-  content:"";
+  content:"✦";
+
   position:absolute;
 
-  width:170px;
-  height:170px;
-
-  border:5px solid var(--ink);
-  border-radius:50%;
-
-  left:4%;
   top:12%;
+  left:6%;
 
-  opacity:.85;
+  font-size:5rem;
+
+  color:var(--lime);
+
+  transform:rotate(-15deg);
+
+  font-family:'Unbounded';
+
+  z-index:1;
 }
 
 .hero::after{
@@ -162,75 +177,77 @@ nav.main-nav a:hover{
 
   position:absolute;
 
-  font-size:7rem;
+  bottom:12%;
+  right:7%;
 
-  right:5%;
-  bottom:8%;
+  font-size:4rem;
 
-  color:var(--lime);
+  color:var(--ink);
 
-  transform:rotate(12deg);
+  transform:rotate(18deg);
 
-  -webkit-text-stroke:3px var(--ink);
+  z-index:1;
 }
 
 
-/* contenidor principal */
+/* Petita etiqueta decorativa */
 
-.hero-content{
+.hero-decoration{
+  position:absolute;
 
-  width:100%;
-  max-width:1350px;
+  top:20%;
+  right:10%;
 
-  display:grid;
+  font-family:'Unbounded';
 
-  grid-template-columns:1.2fr .8fr;
+  font-size:.65rem;
 
-  align-items:center;
+  font-weight:700;
 
-  gap:4rem;
+  padding:.6rem 1rem;
 
-  position:relative;
+  border:2px solid var(--ink);
+
+  border-radius:999px;
+
+  transform:rotate(8deg);
+
   z-index:2;
 }
 
 
-/* text */
+/* TEXT HERO */
 
 .hero-text{
 
-  display:flex;
-  flex-direction:column;
-
-  align-items:center;
+  flex:0 1 650px;
 
   text-align:center;
-}
-
-.hero h1{
-
-  font-size:clamp(3.2rem,8vw,7.8rem);
-
-  line-height:.95;
-
-  cursor:default;
 
   position:relative;
 
   z-index:3;
+}
 
-  transition:transform .15s ease;
+.hero h1{
+
+  font-size:clamp(3rem,8vw,7rem);
+
+  cursor:default;
+
+  display:inline-block;
+
+  transition:color .2s ease;
+
 }
 
 
-/* WIGGLE DEL NOM */
+/* WIGGLE */
 
 .hero h1:hover{
-
-  animation:wiggle .45s ease-in-out infinite;
-
+  animation:wiggle .45s ease-in-out;
+  color:var(--cream);
 }
-
 
 @keyframes wiggle{
 
@@ -239,19 +256,19 @@ nav.main-nav a:hover{
   }
 
   20%{
-    transform:rotate(-2deg) translateX(-2px);
+    transform:rotate(-3deg) translateX(-2px);
   }
 
   40%{
-    transform:rotate(2deg) translateX(2px);
+    transform:rotate(3deg) translateX(2px);
   }
 
   60%{
-    transform:rotate(-1.5deg) translateX(-1px);
+    transform:rotate(-2deg) translateX(-1px);
   }
 
   80%{
-    transform:rotate(1.5deg) translateX(1px);
+    transform:rotate(2deg) translateX(1px);
   }
 
   100%{
@@ -265,12 +282,11 @@ nav.main-nav a:hover{
 
   font-size:1.2rem;
 
-  max-width:32ch;
+  max-width:36ch;
 
-  margin-top:1.4rem;
+  margin:1.5rem auto 0;
 
-  text-align:center;
-
+  line-height:1.5;
 }
 
 
@@ -281,6 +297,7 @@ nav.main-nav a:hover{
   margin-top:2rem;
 
   background:var(--ink);
+
   color:var(--cream);
 
   font-weight:700;
@@ -294,121 +311,62 @@ nav.main-nav a:hover{
   border:3px solid var(--ink);
 
   transition:.2s ease;
-
 }
 
 .cta-btn:hover{
 
   background:var(--cream);
+
   color:var(--ink);
 
   transform:translateY(-3px);
-
 }
 
 
-/* =========================================================
-   POLAROID
-========================================================= */
+/* FOTO HERO */
 
 .hero-photo{
+
+  flex:0 0 auto;
 
   display:flex;
 
   justify-content:center;
-  align-items:center;
 
   position:relative;
 
-  min-height:500px;
-}
-
-
-/* cercle decoratiu darrere */
-
-.hero-photo::before{
-
-  content:"";
-
-  position:absolute;
-
-  width:390px;
-  height:390px;
-
-  border-radius:50%;
-
-  background:var(--lilac);
-
-  border:4px solid var(--ink);
-
-  z-index:0;
-
-}
-
-
-/* estrella */
-
-.hero-photo::after{
-
-  content:"✦";
-
-  position:absolute;
-
-  font-size:5rem;
-
-  color:var(--lime);
-
-  -webkit-text-stroke:2px var(--ink);
-
-  top:15px;
-  right:10px;
-
   z-index:3;
-
-  transform:rotate(18deg);
-
 }
-
 
 .polaroid{
 
   background:#fff;
 
-  padding:18px 18px 55px;
+  padding:15px 15px 48px;
 
-  border-radius:5px;
+  border-radius:4px;
 
-  box-shadow:0 20px 45px rgba(0,0,0,.3);
+  box-shadow:0 18px 40px rgba(0,0,0,.3);
 
-  transform:rotate(-4deg);
+  transform:rotate(4deg);
 
-  width:390px;
+  width:320px;
 
-  max-width:90%;
-
-  position:relative;
-
-  z-index:2;
-
-  transition:transform .35s ease, box-shadow .35s ease;
-
+  transition:.3s ease;
 }
-
 
 .polaroid:hover{
 
-  transform:rotate(-1deg) scale(1.025);
+  transform:rotate(1deg) scale(1.03);
 
-  box-shadow:0 25px 55px rgba(0,0,0,.35);
-
+  box-shadow:0 25px 50px rgba(0,0,0,.35);
 }
-
 
 .polaroid .photo-frame{
 
   width:100%;
 
-  height:480px;
+  height:390px;
 
   border-radius:2px;
 
@@ -419,25 +377,22 @@ nav.main-nav a:hover{
   display:flex;
 
   align-items:center;
+
   justify-content:center;
-
 }
-
 
 .polaroid .photo-frame img{
 
   width:100%;
+
   height:100%;
 
   object-fit:cover;
-
 }
-
 
 .polaroid .photo-frame.no-photo img{
   display:none;
 }
-
 
 .polaroid .photo-frame.no-photo::after{
 
@@ -448,9 +403,7 @@ nav.main-nav a:hover{
   text-align:center;
 
   padding:1rem;
-
 }
-
 
 .polaroid .caption{
 
@@ -460,14 +413,11 @@ nav.main-nav a:hover{
 
   text-align:center;
 
-  margin-top:14px;
-
+  margin-top:12px;
 }
 
 
-/* =========================================================
-   SCALLOP
-========================================================= */
+/* SCALLOP */
 
 .scallop{
 
@@ -496,10 +446,9 @@ nav.main-nav a:hover{
 
   padding:5rem 1.5rem;
 
-  max-width:1000px;
+  max-width:900px;
 
   margin:0 auto;
-
 }
 
 #about h2{
@@ -507,17 +456,15 @@ nav.main-nav a:hover{
   font-size:2.6rem;
 
   margin-bottom:1.5rem;
-
 }
 
 #about p{
 
   font-size:1.1rem;
 
-  line-height:1.65;
+  line-height:1.7;
 
-  max-width:75ch;
-
+  max-width:70ch;
 }
 
 .skills{
@@ -529,7 +476,6 @@ nav.main-nav a:hover{
   gap:.6rem;
 
   margin-top:2rem;
-
 }
 
 .skills span{
@@ -544,11 +490,19 @@ nav.main-nav a:hover{
 
   font-weight:500;
 
+  transition:.2s ease;
+}
+
+.skills span:hover{
+
+  background:var(--lime);
+
+  transform:translateY(-2px);
 }
 
 
 /* =========================================================
-   MARQUEE
+   MARQUEE — LOOP INFINIT
 ========================================================= */
 
 .marquee-wrap{
@@ -565,6 +519,7 @@ nav.main-nav a:hover{
 
   border-bottom:3px solid var(--ink);
 
+  position:relative;
 }
 
 .marquee{
@@ -575,10 +530,16 @@ nav.main-nav a:hover{
 
   white-space:nowrap;
 
-  animation:scroll 14s linear infinite;
+  animation:marqueeLoop 18s linear infinite;
 
   will-change:transform;
+}
 
+.marquee-content{
+
+  display:flex;
+
+  flex-shrink:0;
 }
 
 .marquee span{
@@ -591,9 +552,18 @@ nav.main-nav a:hover{
 
   padding:0 1.5rem;
 
+  flex-shrink:0;
 }
 
-@keyframes scroll{
+
+/*
+  Important:
+  tenim dues còpies EXACTAMENT iguals.
+  La segona comença just on acaba la primera.
+  Això fa que el moviment sigui continu.
+*/
+
+@keyframes marqueeLoop{
 
   from{
     transform:translateX(0);
@@ -605,7 +575,7 @@ nav.main-nav a:hover{
 
 }
 
-@media (prefers-reduced-motion:reduce){
+@media (prefers-reduced-motion: reduce){
 
   .marquee{
     animation:none;
@@ -625,7 +595,6 @@ nav.main-nav a:hover{
   max-width:1100px;
 
   margin:0 auto;
-
 }
 
 #projects > h2{
@@ -633,9 +602,7 @@ nav.main-nav a:hover{
   font-size:2.6rem;
 
   margin-bottom:2rem;
-
 }
-
 
 .tabs{
 
@@ -646,7 +613,6 @@ nav.main-nav a:hover{
   margin-bottom:2rem;
 
   flex-wrap:wrap;
-
 }
 
 .tabs button{
@@ -665,28 +631,37 @@ nav.main-nav a:hover{
 
   cursor:pointer;
 
+  transition:.2s ease;
+}
+
+.tabs button:hover{
+
+  background:var(--lime);
+
 }
 
 .tabs button.active{
 
   background:var(--lilac);
-
 }
 
+
+/* GRID */
 
 .project-grid{
 
   display:grid;
 
   grid-template-columns:
-    repeat(auto-fit,minmax(280px,1fr));
+    repeat(auto-fit,minmax(300px,1fr));
 
   gap:1.5rem;
 
   align-items:start;
-
 }
 
+
+/* CARD */
 
 .project-card{
 
@@ -698,25 +673,42 @@ nav.main-nav a:hover{
 
   background:#fff;
 
+  transition:.25s ease;
+}
+
+.project-card:hover{
+
+  transform:translateY(-4px);
+
+  box-shadow:8px 8px 0 var(--ink);
 }
 
 
 /* =========================================================
-   CAROUSEL
+   CARRUSEL
 ========================================================= */
+
+/*
+  Totes les finestres tenen EXACTAMENT la mateixa mida.
+
+  Les fotos NO es deformen.
+  Utilitzem object-fit: contain.
+
+  Això permet veure la fotografia sencera,
+  independentment del seu format original.
+*/
 
 .carousel{
 
   position:relative;
 
-  min-height:160px;
-
-  height:auto;
+  height:230px;
 
   overflow:hidden;
 
-  background:var(--lilac);
+  background:#f0ebe5;
 
+  border-bottom:3px solid var(--ink);
 }
 
 .car-track{
@@ -725,8 +717,7 @@ nav.main-nav a:hover{
 
   height:100%;
 
-  transition:transform .3s ease;
-
+  transition:transform .35s ease;
 }
 
 .car-track .slide{
@@ -745,24 +736,50 @@ nav.main-nav a:hover{
 
   text-align:center;
 
-  padding:.5rem;
+  padding:.7rem;
 
-  box-sizing:border-box;
+  background:#f0ebe5;
 
+  overflow:hidden;
 }
 
 .car-track .slide img{
 
   width:100%;
 
-  height:auto;
-
-  max-height:500px;
+  height:100%;
 
   object-fit:contain;
 
+  object-position:center;
+
+  display:block;
 }
 
+
+/*
+  Una mica de color diferent al fons
+  perquè les fotos verticals no quedin
+  sobre un blanc buit gegant.
+*/
+
+.car-track .slide:nth-child(3n+1){
+
+  background:#f2e9ff;
+}
+
+.car-track .slide:nth-child(3n+2){
+
+  background:#fff0f7;
+}
+
+.car-track .slide:nth-child(3n+3){
+
+  background:#efffd8;
+}
+
+
+/* FLETXES */
 
 .car-arrow{
 
@@ -774,15 +791,15 @@ nav.main-nav a:hover{
 
   z-index:2;
 
-  width:32px;
+  width:34px;
 
-  height:32px;
+  height:34px;
 
   border-radius:999px;
 
   border:2px solid var(--ink);
 
-  background:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.92);
 
   font-weight:700;
 
@@ -790,6 +807,14 @@ nav.main-nav a:hover{
 
   line-height:1;
 
+  transition:.2s ease;
+}
+
+.car-arrow:hover{
+
+  background:var(--lime);
+
+  transform:translateY(-50%) scale(1.08);
 }
 
 .car-arrow.prev{
@@ -801,52 +826,51 @@ nav.main-nav a:hover{
 }
 
 
+/* DOTS */
+
 .car-dots{
 
   position:absolute;
 
-  bottom:6px;
+  bottom:8px;
 
   left:0;
+
   right:0;
 
   display:flex;
 
   justify-content:center;
 
-  gap:4px;
-
+  gap:5px;
 }
 
 .car-dots span{
 
-  width:6px;
+  width:7px;
 
-  height:6px;
+  height:7px;
 
   border-radius:50%;
 
-  background:rgba(255,255,255,.6);
+  background:rgba(255,255,255,.7);
 
+  border:1px solid var(--ink);
 }
 
 .car-dots span.on{
 
   background:var(--ink);
-
 }
 
 
-/* =========================================================
-   PROJECT PREVIEW
-========================================================= */
+/* PROJECT TEXT */
 
 .project-preview{
 
   cursor:pointer;
 
   padding:1.2rem;
-
 }
 
 .project-preview h3{
@@ -854,7 +878,6 @@ nav.main-nav a:hover{
   font-size:1.15rem;
 
   margin-bottom:.4rem;
-
 }
 
 .project-preview .tag{
@@ -872,7 +895,6 @@ nav.main-nav a:hover{
   padding:.2rem .7rem;
 
   margin-bottom:.6rem;
-
 }
 
 .project-preview .short{
@@ -880,7 +902,6 @@ nav.main-nav a:hover{
   font-size:.9rem;
 
   line-height:1.4;
-
 }
 
 .project-preview .more-label{
@@ -890,22 +911,20 @@ nav.main-nav a:hover{
   font-size:.85rem;
 
   margin-top:.8rem;
-
 }
 
+
+/* DETAILS */
 
 .project-details{
 
   padding:0 1.2rem 1.2rem;
 
   border-top:2px dashed var(--ink);
-
 }
 
 .project-details[hidden]{
-
   display:none;
-
 }
 
 .project-details p{
@@ -915,7 +934,6 @@ nav.main-nav a:hover{
   line-height:1.55;
 
   margin:1rem 0;
-
 }
 
 .project-details video,
@@ -929,6 +947,7 @@ nav.main-nav a:hover{
 
   aspect-ratio:16/9;
 
+  background:#000;
 }
 
 
@@ -943,7 +962,6 @@ nav.main-nav a:hover{
   padding:5rem 1.5rem;
 
   text-align:left;
-
 }
 
 #contact .inner{
@@ -951,7 +969,6 @@ nav.main-nav a:hover{
   max-width:900px;
 
   margin:0 auto;
-
 }
 
 #contact h2{
@@ -959,7 +976,6 @@ nav.main-nav a:hover{
   font-size:2.8rem;
 
   margin-bottom:1.5rem;
-
 }
 
 .contact-buttons{
@@ -971,7 +987,6 @@ nav.main-nav a:hover{
   gap:1rem;
 
   margin-top:1.5rem;
-
 }
 
 .contact-buttons a{
@@ -986,6 +1001,7 @@ nav.main-nav a:hover{
 
   background:#fff;
 
+  transition:.2s ease;
 }
 
 .contact-buttons a:hover{
@@ -994,8 +1010,13 @@ nav.main-nav a:hover{
 
   color:#fff;
 
+  transform:translateY(-3px);
 }
 
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer{
 
@@ -1004,7 +1025,6 @@ footer{
   padding:1.5rem;
 
   font-size:.8rem;
-
 }
 
 
@@ -1012,61 +1032,65 @@ footer{
    RESPONSIVE
 ========================================================= */
 
-@media(max-width:900px){
+@media(max-width:850px){
+
+  header{
+
+    flex-wrap:wrap;
+
+    gap:1rem;
+  }
+
+  nav.main-nav{
+
+    order:3;
+
+    width:100%;
+
+    justify-content:center;
+  }
 
   .hero{
 
-    min-height:auto;
-
-    padding:4rem 1.5rem 5rem;
-
-  }
-
-  .hero-content{
-
-    grid-template-columns:1fr;
+    flex-direction:column;
 
     gap:3rem;
 
+    padding:4rem 1.5rem 5rem;
+
+    min-height:auto;
   }
 
   .hero-text{
 
-    order:1;
+    flex:none;
 
-  }
-
-  .hero-photo{
-
-    order:2;
-
-    min-height:460px;
-
+    width:100%;
   }
 
   .hero h1{
 
-    font-size:clamp(3rem,12vw,6rem);
+    font-size:clamp(2.7rem,12vw,5rem);
+  }
 
+  .hero-photo{
+
+    width:100%;
   }
 
   .polaroid{
 
-    width:340px;
-
+    width:min(330px,85vw);
   }
 
   .polaroid .photo-frame{
 
-    height:420px;
-
+    height:400px;
   }
 
-  .hero-photo::before{
+  .hero-decoration{
 
-    width:340px;
-    height:340px;
-
+    display:none;
   }
 
 }
@@ -1077,126 +1101,76 @@ footer{
   header{
 
     padding:.8rem 1rem;
-
-    flex-wrap:wrap;
-
-    gap:.7rem;
-
   }
 
   .logo{
 
     font-size:1.1rem;
-
   }
 
   nav.main-nav{
 
-    order:3;
+    gap:.8rem;
 
-    width:100%;
-
-    justify-content:center;
-
-    font-size:.85rem;
-
+    font-size:.9rem;
   }
 
-  .hero{
+  .lang-switch button{
 
-    padding:3.5rem 1rem 4rem;
+    padding:.2rem .55rem;
 
-  }
-
-  .hero h1{
-
-    font-size:clamp(2.5rem,13vw,4.5rem);
-
-  }
-
-  .hero p{
-
-    font-size:1rem;
-
-  }
-
-  .hero-photo{
-
-    min-height:390px;
-
-  }
-
-  .polaroid{
-
-    width:285px;
-
-    padding:13px 13px 42px;
-
-  }
-
-  .polaroid .photo-frame{
-
-    height:350px;
-
-  }
-
-  .hero-photo::before{
-
-    width:290px;
-    height:290px;
-
-  }
-
-  .hero::before{
-
-    width:100px;
-    height:100px;
-
-  }
-
-  .hero::after{
-
-    font-size:4rem;
-
+    font-size:.7rem;
   }
 
   #about,
   #projects{
 
-    padding:4rem 1rem;
-
+    padding:4rem 1.2rem;
   }
 
   #about h2,
   #projects > h2{
 
     font-size:2rem;
+  }
 
+  .carousel{
+
+    height:220px;
+  }
+
+  .marquee span{
+
+    font-size:1.05rem;
+
+    padding:0 1rem;
   }
 
 }
 
 
-/* accessibilitat */
+/* Respectar usuaris que prefereixen menys animacions */
 
-@media(prefers-reduced-motion:reduce){
+@media (prefers-reduced-motion: reduce){
 
-  .hero h1:hover{
+  *,
+  *::before,
+  *::after{
 
-    animation:none;
+    animation-duration:.01ms !important;
 
-  }
+    animation-iteration-count:1 !important;
 
-  .polaroid{
+    scroll-behavior:auto !important;
 
-    transition:none;
-
+    transition-duration:.01ms !important;
   }
 
 }
 
 </style>
 </head>
+
 
 <body>
 
@@ -1207,9 +1181,7 @@ footer{
 
 <header>
 
-  <div class="logo">
-    TEIA
-  </div>
+  <div class="logo">TEIA</div>
 
   <nav class="main-nav">
 
@@ -1239,6 +1211,7 @@ footer{
 
   </nav>
 
+
   <div class="lang-switch">
 
     <button data-lang-btn="ca" class="active">
@@ -1258,64 +1231,72 @@ footer{
 </header>
 
 
+
 <!-- =========================================================
      HERO
 ========================================================= -->
 
 <section class="hero">
 
-  <div class="hero-content">
-
-    <div class="hero-text">
-
-      <h1
-        data-i18n
-        data-ca="TEIA TURON"
-        data-es="TEIA TURON"
-        data-en="TEIA TURON">
-        TEIA TURON
-      </h1>
-
-      <p
-        data-i18n
-        data-ca="Estudiant de Publicitat i RP. M'agrada comunicar amb estil i impacte."
-        data-es="Estudiante de Publicidad y RP. Me gusta comunicar con estilo e impacto."
-        data-en="Advertising & PR student. I like to communicate with style and impact.">
-        Estudiant de Publicitat i RP. M'agrada comunicar amb estil i impacte.
-      </p>
-
-      <a
-        href="cv.pdf"
-        target="_blank"
-        class="cta-btn"
-        data-i18n
-        data-ca="Veure el meu CV →"
-        data-es="Ver mi CV →"
-        data-en="See my CV →">
-        Veure el meu CV →
-      </a>
-
-    </div>
+  <div class="hero-decoration">
+    creative mind ✦
+  </div>
 
 
-    <div class="hero-photo">
+  <div class="hero-text">
 
-      <div class="polaroid">
+    <h1
+      data-i18n
+      data-ca="TEIA TURON"
+      data-es="TEIA TURON"
+      data-en="TEIA TURON">
+      TEIA TURON
+    </h1>
 
-        <div class="photo-frame">
 
-          <img
-            src="images/teia.jpg"
-            alt="Teia Turon"
-            onerror="this.parentElement.classList.add('no-photo')">
+    <p
+      data-i18n
+      data-ca="Estudiant de Publicitat i RP. M'agrada comunicar amb estil i impacte."
+      data-es="Estudiante de Publicidad y RRPP. Me gusta comunicar con estilo e impacto."
+      data-en="Advertising & PR student. I like to communicate with style and impact.">
 
-        </div>
+      Estudiant de Publicitat i RP. M'agrada comunicar amb estil i impacte.
 
-        <p class="caption">
-          Girona
-        </p>
+    </p>
+
+
+    <a
+      href="cv.pdf"
+      target="_blank"
+      class="cta-btn"
+      data-i18n
+      data-ca="Veure el meu CV →"
+      data-es="Ver mi CV →"
+      data-en="See my CV →">
+
+      Veure el meu CV →
+
+    </a>
+
+  </div>
+
+
+  <div class="hero-photo">
+
+    <div class="polaroid">
+
+      <div class="photo-frame">
+
+        <img
+          src="images/teia.jpg"
+          alt="Teia Turon"
+          onerror="this.parentElement.classList.add('no-photo')">
 
       </div>
+
+      <p class="caption">
+        Girona
+      </p>
 
     </div>
 
@@ -1325,6 +1306,7 @@ footer{
 
 
 <div class="scallop"></div>
+
 
 
 <!-- =========================================================
@@ -1338,26 +1320,22 @@ footer{
     data-ca="Sobre mi"
     data-es="Sobre mí"
     data-en="About me">
+
     Sobre mi
+
   </h2>
+
 
   <p
     data-i18n
-    data-ca="Yes, you read that right Teia, a name that's uncommon, curious to some, and full of history - just like me. I'm a budding advertising creative, a lover of ideas that connect and stories that leave a lasting mark. Communication is my comfort zone... but stepping outside it to explore new challenges? Even more so! Just to give you an idea... I've lived in the United States, in Italy, worked in customer service, babysat, acted in front of cameras, been a model, been in radio... so I've learned to say &quot;yes&quot; to every opportunity that helps me grow from working as a receptionist at the very deep countryside campsite to starring in an advertising campaign spread around Catalonia. My goal? To communicate with purpose, style, and impact. Wanna talk?"
 
-    data-es="Sí, has leído bien: Teia, un nombre poco común, curioso para algunos y lleno de historia, igual que yo. Soy una futura creativa publicitaria, amante de las ideas que conectan y de las historias que dejan huella. La comunicación es mi zona de confort... pero salir de ella para explorar nuevos retos, ¡todavía más! Para que te hagas una idea... he vivido en Estados Unidos y en Italia, he trabajado en atención al cliente, he cuidado niños, he actuado delante de cámaras, he sido modelo y he trabajado en radio... así que he aprendido a decir &quot;sí&quot; a cada oportunidad que me ayuda a crecer, desde trabajar como recepcionista en un camping en pleno campo hasta protagonizar una campaña publicitaria difundida por Cataluña. ¿Mi objetivo? Comunicar con propósito, estilo e impacto. ¿Hablamos?"
+    data-ca="Sí, ho has llegit bé, Teia: un nom poc habitual, curiós per a alguns i ple d'història — com jo. Sóc una futura creativa publicitària, amant de les idees que connecten i de les històries que deixen empremta. La comunicació és la meva zona de confort... però sortir-ne per explorar nous reptes? Encara més! Perquè et facis una idea... he viscut als Estats Units i a Itàlia, he treballat en atenció al client, he fet de cangur, he actuat davant de càmeres, he estat model i he treballat a la ràdio... així que he après a dir «sí» a cada oportunitat que m'ajuda a créixer: des de treballar com a recepcionista en un càmping perdut enmig del camp fins a protagonitzar una campanya publicitària difosa per tot Catalunya. El meu objectiu? Comunicar amb propòsit, estil i impacte. Parlem?"
 
-    data-en="Yes, you read that right Teia, a name that's uncommon, curious to some, and full of history - just like me. I'm a budding advertising creative, a lover of ideas that connect and stories that leave a lasting mark. Communication is my comfort zone... but stepping outside it to explore new challenges? Even more so! Just to give you an idea... I've lived in the United States, in Italy, worked in customer service, babysat, acted in front of cameras, been a model, been in radio... so I've learned to say &quot;yes&quot; to every opportunity that helps me grow from working as a receptionist at the very deep countryside campsite to starring in an advertising campaign spread around Catalonia. My goal? To communicate with purpose, style, and impact. Wanna talk?">
+    data-es="Sí, lo has leído bien, Teia: un nombre poco común, curioso para algunos y lleno de historia — como yo. Soy una futura creativa publicitaria, amante de las ideas que conectan y de las historias que dejan huella. La comunicación es mi zona de confort... pero salir de ella para explorar nuevos retos, ¡todavía más! Para que te hagas una idea... he vivido en Estados Unidos y en Italia, he trabajado en atención al cliente, he hecho de canguro, he actuado delante de cámaras, he sido modelo y he trabajado en radio... así que he aprendido a decir «sí» a cada oportunidad que me ayuda a crecer: desde trabajar como recepcionista en un camping perdido en medio del campo hasta protagonizar una campaña publicitaria difundida por toda Cataluña. ¿Mi objetivo? Comunicar con propósito, estilo e impacto. ¿Hablamos?"
 
-    Yes, you read that right Teia,
-    a name that's uncommon, curious to some, and full of history - just like me.
-    I'm a budding advertising creative, a lover of ideas that connect and stories that leave a lasting mark.
-    Communication is my comfort zone... but stepping outside it to explore new challenges? Even more so!
-    Just to give you an idea... I've lived in the United States, in Italy, worked in customer service,
-    babysat, acted in front of cameras, been a model, been in radio... so I've learned to say "yes"
-    to every opportunity that helps me grow from working as a receptionist at the very deep countryside campsite
-    to starring in an advertising campaign spread around Catalonia.
-    My goal? To communicate with purpose, style, and impact. Wanna talk?
+    data-en="Yes, you read that right, Teia, a name that's uncommon, curious to some, and full of history — just like me. I'm a budding advertising creative, a lover of ideas that connect and stories that leave a lasting mark. Communication is my comfort zone... but stepping outside it to explore new challenges? Even more so! Just to give you an idea... I've lived in the United States, in Italy, worked in customer service, babysat, acted in front of cameras, been a model, been in radio... so I've learned to say “yes” to every opportunity that helps me grow, from working as a receptionist at a very remote countryside campsite to starring in an advertising campaign spread around Catalonia. My goal? To communicate with purpose, style, and impact. Wanna talk?">
+
+    Sí, ho has llegit bé, Teia: un nom poc habitual, curiós per a alguns i ple d'història — com jo. Sóc una futura creativa publicitària, amant de les idees que connecten i de les històries que deixen empremta. La comunicació és la meva zona de confort... però sortir-ne per explorar nous reptes? Encara més! Perquè et facis una idea... he viscut als Estats Units i a Itàlia, he treballat en atenció al client, he fet de cangur, he actuat davant de càmeres, he estat model i he treballat a la ràdio... així que he après a dir «sí» a cada oportunitat que m'ajuda a créixer: des de treballar com a recepcionista en un càmping perdut enmig del camp fins a protagonitzar una campanya publicitària difosa per tot Catalunya. El meu objectiu? Comunicar amb propòsit, estil i impacte. Parlem?
 
   </p>
 
@@ -1376,6 +1354,7 @@ footer{
 </section>
 
 
+
 <!-- =========================================================
      MARQUEE
 ========================================================= -->
@@ -1384,25 +1363,47 @@ footer{
 
   <div class="marquee">
 
-    <span>
-      PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
-    </span>
+    <!-- CÒPIA 1 -->
 
-    <span>
-      PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
-    </span>
+    <div class="marquee-content">
 
-    <span>
-      PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
-    </span>
+      <span>
+        PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
+      </span>
 
-    <span>
-      PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
-    </span>
+      <span>
+        PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
+      </span>
+
+      <span>
+        PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
+      </span>
+
+    </div>
+
+
+    <!-- CÒPIA 2 -->
+
+    <div class="marquee-content">
+
+      <span>
+        PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
+      </span>
+
+      <span>
+        PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
+      </span>
+
+      <span>
+        PUBLICITAT · CREATIVITAT · ESTRATÈGIA · CONTINGUT ·
+      </span>
+
+    </div>
 
   </div>
 
 </div>
+
 
 
 <!-- =========================================================
@@ -1416,7 +1417,9 @@ footer{
     data-ca="Projectes"
     data-es="Proyectos"
     data-en="Projects">
+
     Projectes
+
   </h2>
 
 
@@ -1429,8 +1432,11 @@ footer{
       data-ca="Tots"
       data-es="Todos"
       data-en="All">
+
       Tots
+
     </button>
+
 
     <button
       data-filter="paid"
@@ -1438,8 +1444,11 @@ footer{
       data-ca="Pagats"
       data-es="Pagados"
       data-en="Paid">
+
       Pagats
+
     </button>
+
 
     <button
       data-filter="academic"
@@ -1447,10 +1456,13 @@ footer{
       data-ca="Acadèmics"
       data-es="Académicos"
       data-en="Academic">
+
       Acadèmics
+
     </button>
 
   </div>
+
 
 
   <div class="project-grid">
@@ -1460,18 +1472,21 @@ footer{
          PAID 1
     ====================================================== -->
 
-    <article class="project-card" data-cat="paid">
+    <article
+      class="project-card"
+      data-cat="paid">
 
       <div
         class="carousel"
-        data-images="5"
         data-folder="carnetjove">
 
         <button
           class="car-arrow prev"
           onclick="event.stopPropagation()"
           aria-label="Imatge anterior">
+
           ‹
+
         </button>
 
         <div class="car-track"></div>
@@ -1480,7 +1495,9 @@ footer{
           class="car-arrow next"
           onclick="event.stopPropagation()"
           aria-label="Imatge següent">
+
           ›
+
         </button>
 
         <div class="car-dots"></div>
@@ -1498,16 +1515,22 @@ footer{
           data-ca="Pagat"
           data-es="Pagado"
           data-en="Paid">
+
           Pagat
+
         </span>
+
 
         <h3
           data-i18n
           data-ca="Actriu campanya Carnet Jove 2025"
           data-es="Actriz campaña Carnet Jove 2025"
           data-en="Actress, Catalan Youth Card campaign 2025">
+
           Actriu campanya Carnet Jove 2025
+
         </h3>
+
 
         <p
           class="short"
@@ -1515,8 +1538,11 @@ footer{
           data-ca="Campanya de CaixaBank emesa a mitjans catalans."
           data-es="Campaña de CaixaBank emitida en medios catalanes."
           data-en="CaixaBank campaign broadcast across Catalan media.">
+
           Campanya de CaixaBank emesa a mitjans catalans.
+
         </p>
+
 
         <p
           class="more-label"
@@ -1524,21 +1550,31 @@ footer{
           data-ca="+ Veure més"
           data-es="+ Ver más"
           data-en="+ See more">
+
           + Veure més
+
         </p>
 
       </div>
 
 
-      <div class="project-details" hidden>
+      <div
+        class="project-details"
+        hidden>
 
         <p
           data-i18n
+
           data-ca="Novembre 2025. Actriu a la campanya emesa a la televisió catalana, veu en off per a ràdio i televisió, model per newsletters, MUPIs, publicitat en autobusos i caixers de CaixaBank, entre altres formats."
+
           data-es="Noviembre 2025. Actriz en la campaña emitida en televisión catalana, voz en off para radio y televisión, modelo para newsletters, MUPIs, publicidad en autobuses y cajeros de CaixaBank, entre otros formatos."
+
           data-en="November 2025. Actress in the campaign broadcast on Catalan TV, voice-over for radio and TV, model for newsletters, MUPIs, bus advertising and CaixaBank ATMs, among other formats.">
-          Novembre 2025. Actriu a la campanya emesa a la televisió catalana...
+
+          Novembre 2025. Actriu a la campanya emesa a la televisió catalana, veu en off per a ràdio i televisió, model per newsletters, MUPIs, publicitat en autobusos i caixers de CaixaBank, entre altres formats.
+
         </p>
+
 
         <video controls>
 
@@ -1557,29 +1593,37 @@ footer{
     </article>
 
 
+
     <!-- =====================================================
          PAID 2
     ====================================================== -->
 
-    <article class="project-card" data-cat="paid">
+    <article
+      class="project-card"
+      data-cat="paid">
 
       <div
         class="carousel"
-        data-images="5"
         data-folder="pregon">
 
         <button
           class="car-arrow prev"
-          onclick="event.stopPropagation()">
+          onclick="event.stopPropagation()"
+          aria-label="Imatge anterior">
+
           ‹
+
         </button>
 
         <div class="car-track"></div>
 
         <button
           class="car-arrow next"
-          onclick="event.stopPropagation()">
+          onclick="event.stopPropagation()"
+          aria-label="Imatge següent">
+
           ›
+
         </button>
 
         <div class="car-dots"></div>
@@ -1597,16 +1641,22 @@ footer{
           data-ca="Pagat"
           data-es="Pagado"
           data-en="Paid">
+
           Pagat
+
         </span>
+
 
         <h3
           data-i18n
           data-ca="Actriu a la pel·lícula “El Pregón”"
           data-es="Actriz en la película “El Pregón”"
           data-en="Actress in the film “El Pregón”">
-          Actriu a la pel·lícula "El Pregón"
+
+          Actriu a la pel·lícula “El Pregón”
+
         </h3>
+
 
         <p
           class="short"
@@ -1614,8 +1664,11 @@ footer{
           data-ca="Pel·lícula espanyola, més de 2M€ de taquilla."
           data-es="Película española, más de 2M€ de taquilla."
           data-en="Spanish film, grossed over €2M in theaters.">
+
           Pel·lícula espanyola, més de 2M€ de taquilla.
+
         </p>
+
 
         <p
           class="more-label"
@@ -1623,21 +1676,31 @@ footer{
           data-ca="+ Veure més"
           data-es="+ Ver más"
           data-en="+ See more">
+
           + Veure més
+
         </p>
 
       </div>
 
 
-      <div class="project-details" hidden>
+      <div
+        class="project-details"
+        hidden>
 
         <p
           data-i18n
-          data-ca="Març 2016. Vaig actuar a la pel·lícula, que va recaptar prop de 2 milions d'euros a les sales de cinema."
-          data-es="Marzo 2016. Actué en la película, que recaudó cerca de 2 millones de euros en cines."
-          data-en="March 2016. I acted in the film, which grossed nearly €2 million in theaters.">
-          Març 2016. Vaig actuar a la pel·lícula...
+
+          data-ca="Març 2016. Vaig actuar a la pel·lícula, que va recaptar prop de 2 milions d'euros a les sales de cinema, situant-se entre les més vistes del cap de setmana d'estrena."
+
+          data-es="Marzo 2016. Actué en la película, que recaudó cerca de 2 millones de euros en cines, situándose entre las más vistas del fin de semana de estreno."
+
+          data-en="March 2016. I acted in the film, which grossed nearly €2 million in theaters, ranking among the most-watched films of its opening weekend.">
+
+          Març 2016. Vaig actuar a la pel·lícula, que va recaptar prop de 2 milions d'euros a les sales de cinema, situant-se entre les més vistes del cap de setmana d'estrena.
+
         </p>
+
 
         <video controls>
 
@@ -1656,21 +1719,25 @@ footer{
     </article>
 
 
+
     <!-- =====================================================
          ACADEMIC 1
     ====================================================== -->
 
-    <article class="project-card" data-cat="academic">
+    <article
+      class="project-card"
+      data-cat="academic">
 
       <div
         class="carousel"
-        data-images="5"
         data-folder="devesa">
 
         <button
           class="car-arrow prev"
           onclick="event.stopPropagation()">
+
           ‹
+
         </button>
 
         <div class="car-track"></div>
@@ -1678,7 +1745,9 @@ footer{
         <button
           class="car-arrow next"
           onclick="event.stopPropagation()">
+
           ›
+
         </button>
 
         <div class="car-dots"></div>
@@ -1696,16 +1765,22 @@ footer{
           data-ca="Acadèmic"
           data-es="Académico"
           data-en="Academic">
+
           Acadèmic
+
         </span>
+
 
         <h3
           data-i18n
           data-ca="Campanya per al Parc de la Devesa"
           data-es="Campaña para el Parc de la Devesa"
           data-en="Campaign for La Devesa Park">
+
           Campanya per al Parc de la Devesa
+
         </h3>
+
 
         <p
           class="short"
@@ -1713,8 +1788,11 @@ footer{
           data-ca="Identitat visual i campanya d'Instagram per a joves."
           data-es="Identidad visual y campaña de Instagram para jóvenes."
           data-en="Visual identity and Instagram campaign for young people.">
+
           Identitat visual i campanya d'Instagram per a joves.
+
         </p>
+
 
         <p
           class="more-label"
@@ -1722,21 +1800,31 @@ footer{
           data-ca="+ Veure més"
           data-es="+ Ver más"
           data-en="+ See more">
+
           + Veure més
+
         </p>
 
       </div>
 
 
-      <div class="project-details" hidden>
+      <div
+        class="project-details"
+        hidden>
 
         <p
           data-i18n
-          data-ca="Creació d'una identitat visual i campanya d'Instagram pensada per animar els joves a descobrir el Parc de la Devesa."
-          data-es="Creación de una identidad visual y campaña de Instagram pensada para animar a los jóvenes a descubrir el Parc de la Devesa."
-          data-en="Creation of a visual identity and Instagram campaign designed to encourage young people to engage with La Devesa Park.">
-          Creació d'una identitat visual...
+
+          data-ca="Creació d'una identitat visual i campanya d'Instagram pensada per animar els joves a descobrir el Parc de la Devesa (Girona) a través de reptes setmanals. Responsable de la identitat visual i l'aspecte tècnic de la campanya."
+
+          data-es="Creación de una identidad visual y campaña de Instagram pensada para animar a los jóvenes a descubrir el Parc de la Devesa (Girona) a través de retos semanales. Responsable de la identidad visual y el aspecto técnico de la campaña."
+
+          data-en="Creation of a visual identity and Instagram campaign designed to encourage young people to engage with La Devesa Park in Girona through weekly challenges. Responsible for the campaign's visual identity and technical execution.">
+
+          Creació d'una identitat visual i campanya d'Instagram pensada per animar els joves a descobrir el Parc de la Devesa (Girona) a través de reptes setmanals. Responsable de la identitat visual i l'aspecte tècnic de la campanya.
+
         </p>
+
 
         <video controls>
 
@@ -1755,21 +1843,25 @@ footer{
     </article>
 
 
+
     <!-- =====================================================
          ACADEMIC 2
     ====================================================== -->
 
-    <article class="project-card" data-cat="academic">
+    <article
+      class="project-card"
+      data-cat="academic">
 
       <div
         class="carousel"
-        data-images="5"
         data-folder="girocleta">
 
         <button
           class="car-arrow prev"
           onclick="event.stopPropagation()">
+
           ‹
+
         </button>
 
         <div class="car-track"></div>
@@ -1777,7 +1869,9 @@ footer{
         <button
           class="car-arrow next"
           onclick="event.stopPropagation()">
+
           ›
+
         </button>
 
         <div class="car-dots"></div>
@@ -1795,16 +1889,22 @@ footer{
           data-ca="Acadèmic"
           data-es="Académico"
           data-en="Academic">
+
           Acadèmic
+
         </span>
+
 
         <h3
           data-i18n
-          data-ca="Conceptes publicitaris fictícis"
+          data-ca="Conceptes publicitaris ficticis"
           data-es="Conceptos publicitarios ficticios"
           data-en="Fictional advertising concepts">
-          Conceptes publicitaris fictícis
+
+          Conceptes publicitaris ficticis
+
         </h3>
+
 
         <p
           class="short"
@@ -1812,8 +1912,11 @@ footer{
           data-ca="Girocleta, vi Sprintoso Moscato, pintallavis Maybelline."
           data-es="Girocleta, vino Sprintoso Moscato, pintalabios Maybelline."
           data-en="Girocleta, Sprintoso Moscato wine, Maybelline lipstick.">
+
           Girocleta, vi Sprintoso Moscato, pintallavis Maybelline.
+
         </p>
+
 
         <p
           class="more-label"
@@ -1821,21 +1924,31 @@ footer{
           data-ca="+ Veure més"
           data-es="+ Ver más"
           data-en="+ See more">
+
           + Veure més
+
         </p>
 
       </div>
 
 
-      <div class="project-details" hidden>
+      <div
+        class="project-details"
+        hidden>
 
         <p
           data-i18n
-          data-ca="Desenvolupament de conceptes de campanya, redacció, identitats visuals i peces gràfiques adaptades a cada objectiu de comunicació."
-          data-es="Desarrollo de conceptos de campaña, redacción, identidades visuales y piezas gráficas adaptadas a cada objetivo de comunicación."
-          data-en="Development of campaign ideas, copywriting, visual identities and graphic pieces adapted to each communication objective.">
-          Desenvolupament de conceptes de campanya...
+
+          data-ca="Desenvolupament de conceptes de campanya, redacció, identitats visuals i peces gràfiques adaptades a cada objectiu de comunicació: Girocleta (servei fictici de lloguer de bicicletes), el vi Sprintoso Moscato i el pintallavis Maybelline, entre altres."
+
+          data-es="Desarrollo de conceptos de campaña, redacción, identidades visuales y piezas gráficas adaptadas a cada objetivo de comunicación: Girocleta (servicio ficticio de alquiler de bicicletas), el vino Sprintoso Moscato y el pintalabios Maybelline, entre otros."
+
+          data-en="Development of campaign ideas, copywriting, visual identities and graphic pieces adapted to each communication objective: Girocleta (fictional bike-rental service), Sprintoso Moscato wine, and Maybelline lipstick, among others.">
+
+          Desenvolupament de conceptes de campanya, redacció, identitats visuals i peces gràfiques adaptades a cada objectiu de comunicació: Girocleta (servei fictici de lloguer de bicicletes), el vi Sprintoso Moscato i el pintallavis Maybelline, entre altres.
+
         </p>
+
 
         <video controls>
 
@@ -1854,21 +1967,25 @@ footer{
     </article>
 
 
+
     <!-- =====================================================
          ACADEMIC 3
     ====================================================== -->
 
-    <article class="project-card" data-cat="academic">
+    <article
+      class="project-card"
+      data-cat="academic">
 
       <div
         class="carousel"
-        data-images="5"
         data-folder="urbanfabrics">
 
         <button
           class="car-arrow prev"
           onclick="event.stopPropagation()">
+
           ‹
+
         </button>
 
         <div class="car-track"></div>
@@ -1876,7 +1993,9 @@ footer{
         <button
           class="car-arrow next"
           onclick="event.stopPropagation()">
+
           ›
+
         </button>
 
         <div class="car-dots"></div>
@@ -1894,16 +2013,22 @@ footer{
           data-ca="Acadèmic"
           data-es="Académico"
           data-en="Academic">
+
           Acadèmic
+
         </span>
+
 
         <h3
           data-i18n
           data-ca="Revista Urban Fabrics"
           data-es="Revista Urban Fabrics"
           data-en="Urban Fabrics magazine">
+
           Revista Urban Fabrics
+
         </h3>
+
 
         <p
           class="short"
@@ -1911,8 +2036,11 @@ footer{
           data-ca="Direcció d'art i estilisme per a una revista editorial."
           data-es="Dirección de arte y estilismo para una revista editorial."
           data-en="Art direction and styling for an editorial magazine.">
+
           Direcció d'art i estilisme per a una revista editorial.
+
         </p>
+
 
         <p
           class="more-label"
@@ -1920,21 +2048,31 @@ footer{
           data-ca="+ Veure més"
           data-es="+ Ver más"
           data-en="+ See more">
+
           + Veure més
+
         </p>
 
       </div>
 
 
-      <div class="project-details" hidden>
+      <div
+        class="project-details"
+        hidden>
 
         <p
           data-i18n
-          data-ca="Direcció d'art, estilisme de props i disseny gràfic per a la creació d'Urban Fabrics."
-          data-es="Dirección de arte, estilismo de props y diseño gráfico para la creación de Urban Fabrics."
-          data-en="Art direction, prop styling and graphic design for the creation of Urban Fabrics.">
-          Direcció d'art...
+
+          data-ca="Direcció d'art, estilisme de props i disseny gràfic per a la creació d'Urban Fabrics, revista editorial desenvolupada com a projecte acadèmic de publicitat."
+
+          data-es="Dirección de arte, estilismo de props y diseño gráfico para la creación de Urban Fabrics, revista editorial desarrollada como proyecto académico de publicidad."
+
+          data-en="Art direction, prop styling and graphic design for the creation of Urban Fabrics, an editorial magazine developed as part of an academic advertising project.">
+
+          Direcció d'art, estilisme de props i disseny gràfic per a la creació d'Urban Fabrics, revista editorial desenvolupada com a projecte acadèmic de publicitat.
+
         </p>
+
 
         <video controls>
 
@@ -1953,21 +2091,25 @@ footer{
     </article>
 
 
+
     <!-- =====================================================
          ACADEMIC 4
     ====================================================== -->
 
-    <article class="project-card" data-cat="academic">
+    <article
+      class="project-card"
+      data-cat="academic">
 
       <div
         class="carousel"
-        data-images="5"
         data-folder="valentes">
 
         <button
           class="car-arrow prev"
           onclick="event.stopPropagation()">
+
           ‹
+
         </button>
 
         <div class="car-track"></div>
@@ -1975,7 +2117,9 @@ footer{
         <button
           class="car-arrow next"
           onclick="event.stopPropagation()">
+
           ›
+
         </button>
 
         <div class="car-dots"></div>
@@ -1993,25 +2137,34 @@ footer{
           data-ca="Acadèmic"
           data-es="Académico"
           data-en="Academic">
+
           Acadèmic
+
         </span>
+
 
         <h3
           data-i18n
           data-ca="Espot ONG Valentes i Acompanyades"
           data-es="Espot ONG Valentes i Acompanyades"
           data-en="NGO Valentes i Acompanyades spot">
+
           Espot ONG Valentes i Acompanyades
+
         </h3>
+
 
         <p
           class="short"
           data-i18n
           data-ca="Direcció artística per a un espot de conscienciació."
-          data-es="Dirección artística para un espot de concienciación."
+          data-es="Dirección artística para un spot de concienciación."
           data-en="Art direction for an awareness campaign spot.">
+
           Direcció artística per a un espot de conscienciació.
+
         </p>
+
 
         <p
           class="more-label"
@@ -2019,21 +2172,31 @@ footer{
           data-ca="+ Veure més"
           data-es="+ Ver más"
           data-en="+ See more">
+
           + Veure més
+
         </p>
 
       </div>
 
 
-      <div class="project-details" hidden>
+      <div
+        class="project-details"
+        hidden>
 
         <p
           data-i18n
-          data-ca="Encarregada de la direcció d'ajudant, direcció d'art i coherència visual per a la producció d'un espot publicitari per a l'ONG Valentes i Acompanyades."
-          data-es="Encargada de la dirección de ayudante, dirección de arte y coherencia visual para la producción de un espot publicitario para la ONG Valentes i Acompanyades."
-          data-en="In charge of assistant direction, art direction and visual consistency for the production of an advertising spot for the NGO Valentes i Acompanyades.">
-          Encarregada de la direcció...
+
+          data-ca="Encarregada de la direcció d'ajudant, direcció d'art i coherència visual per a la producció d'un espot publicitari per a l'ONG Valentes i Acompanyades, de conscienciació contra els matrimonis infantils i forçats."
+
+          data-es="Encargada de la dirección de ayudante, dirección de arte y coherencia visual para la producción de un spot publicitario para la ONG Valentes i Acompanyades, de concienciación contra los matrimonios infantiles y forzados."
+
+          data-en="In charge of assistant direction, art direction and visual consistency for the production of an advertising spot for the NGO Valentes i Acompanyades, raising awareness against child and forced marriage.">
+
+          Encarregada de la direcció d'ajudant, direcció d'art i coherència visual per a la producció d'un espot publicitari per a l'ONG Valentes i Acompanyades, de conscienciació contra els matrimonis infantils i forçats.
+
         </p>
+
 
         <video controls>
 
@@ -2051,9 +2214,11 @@ footer{
 
     </article>
 
+
   </div>
 
 </section>
+
 
 
 <!-- =========================================================
@@ -2069,15 +2234,20 @@ footer{
       data-ca="Parlem?"
       data-es="¿Hablamos?"
       data-en="Let's talk">
+
       Parlem?
+
     </h2>
+
 
     <p
       data-i18n
       data-ca="Si vols col·laborar o simplement dir hola, escriu-me."
       data-es="Si quieres colaborar o simplemente decir hola, escríbeme."
       data-en="Want to collaborate or just say hi? Reach out.">
+
       Si vols col·laborar o simplement dir hola, escriu-me.
+
     </p>
 
 
@@ -2087,11 +2257,15 @@ footer{
         Email
       </a>
 
+
       <a
         href="https://instagram.com/teiaturon"
         target="_blank">
+
         Instagram
+
       </a>
+
 
       <a
         href="cv.pdf"
@@ -2100,7 +2274,9 @@ footer{
         data-ca="Descarrega el CV"
         data-es="Descarga el CV"
         data-en="Download CV">
+
         Descarrega el CV
+
       </a>
 
     </div>
@@ -2110,15 +2286,18 @@ footer{
 </section>
 
 
+
 <footer>
   © 2026 Teia Turon
 </footer>
 
 
+
 <script>
 
+
 /* =========================================================
-   CANVI D'IDIOMA
+   IDIOMES
 ========================================================= */
 
 function setLanguage(lang){
@@ -2131,18 +2310,19 @@ function setLanguage(lang){
   document.documentElement.lang = lang;
 
 
-  document.querySelectorAll('[data-i18n]').forEach(function(el){
+  document.querySelectorAll('[data-i18n]')
+    .forEach(function(el){
 
-    var text =
-      el.getAttribute('data-' + lang);
+      var text =
+        el.getAttribute('data-' + lang);
 
-    if(text){
+      if(text){
 
-      el.textContent = text;
+        el.textContent = text;
 
-    }
+      }
 
-  });
+    });
 
 
   document.querySelectorAll(
@@ -2177,8 +2357,9 @@ document.querySelectorAll(
 });
 
 
+
 /* =========================================================
-   EXPANDIR PROJECTE
+   EXPANDIR PROJECTES
 ========================================================= */
 
 function toggleProject(previewEl){
@@ -2194,21 +2375,21 @@ function toggleProject(previewEl){
 
     details.removeAttribute('hidden');
 
+
     previewEl.querySelector(
       '.more-label'
     ).textContent =
 
       document.documentElement.lang === 'ca'
-      ? '– Amagar'
+        ? '– Amagar'
 
       : document.documentElement.lang === 'es'
-      ? '– Ocultar'
+        ? '– Ocultar'
 
       : '– Hide';
 
-  }
 
-  else{
+  }else{
 
     details.setAttribute(
       'hidden',
@@ -2224,33 +2405,28 @@ function toggleProject(previewEl){
 }
 
 
+
 /* =========================================================
-   DETECTAR IMATGES AUTOMÀTICAMENT
+   CARRUSELS
 ========================================================= */
 
 function probeImage(src){
 
   return new Promise(function(resolve){
 
-    var img =
-      new Image();
+    var img = new Image();
 
+    img.onload = function(){
 
-    img.onload =
-      function(){
+      resolve(src);
 
-        resolve(src);
+    };
 
-      };
+    img.onerror = function(){
 
+      resolve(null);
 
-    img.onerror =
-      function(){
-
-        resolve(null);
-
-      };
-
+    };
 
     img.src = src;
 
@@ -2276,6 +2452,14 @@ document.querySelectorAll(
   var candidates = [];
 
 
+  /*
+    Busquem fins a 8 imatges:
+
+    images/carnetjove-1.jpg
+    images/carnetjove-2.jpg
+    etc.
+  */
+
   for(
     var i = 1;
     i <= 8;
@@ -2296,6 +2480,7 @@ document.querySelectorAll(
   Promise.all(
     candidates.map(probeImage)
   ).then(function(results){
+
 
     var found =
       results.filter(Boolean);
@@ -2327,20 +2512,24 @@ document.querySelectorAll(
 
 
     found.forEach(
-      function(src,idx){
+      function(src, idx){
 
         var slide =
-          document.createElement('div');
+          document.createElement(
+            'div'
+          );
 
         slide.className =
           'slide';
 
 
         var img =
-          document.createElement('img');
+          document.createElement(
+            'img'
+          );
 
-        img.src =
-          src;
+
+        img.src = src;
 
         img.alt = '';
 
@@ -2349,13 +2538,16 @@ document.querySelectorAll(
           img
         );
 
+
         track.appendChild(
           slide
         );
 
 
         var dot =
-          document.createElement('span');
+          document.createElement(
+            'span'
+          );
 
 
         if(idx === 0){
@@ -2385,18 +2577,18 @@ document.querySelectorAll(
         '%)';
 
 
-      dots.querySelectorAll(
-        'span'
-      ).forEach(
-        function(d,di){
+      dots
+        .querySelectorAll('span')
+        .forEach(
+          function(d, di){
 
-          d.classList.toggle(
-            'on',
-            di === index
-          );
+            d.classList.toggle(
+              'on',
+              di === index
+            );
 
-        }
-      );
+          }
+        );
 
     }
 
@@ -2410,8 +2602,12 @@ document.querySelectorAll(
         e.stopPropagation();
 
         index =
-          (index - 1 + found.length)
-          % found.length;
+          (
+            index -
+            1 +
+            found.length
+          ) %
+          found.length;
 
         update();
 
@@ -2428,8 +2624,11 @@ document.querySelectorAll(
         e.stopPropagation();
 
         index =
-          (index + 1)
-          % found.length;
+          (
+            index +
+            1
+          ) %
+          found.length;
 
         update();
 
@@ -2440,6 +2639,7 @@ document.querySelectorAll(
   });
 
 });
+
 
 
 /* =========================================================
@@ -2479,14 +2679,12 @@ document.querySelectorAll(
       ).forEach(function(card){
 
         card.style.display =
-
           (
             filter === 'all' ||
             card.dataset.cat === filter
           )
-
-          ? ''
-          : 'none';
+            ? ''
+            : 'none';
 
       });
 
@@ -2494,6 +2692,7 @@ document.querySelectorAll(
   );
 
 });
+
 
 </script>
 
