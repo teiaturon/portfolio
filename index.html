@@ -206,7 +206,7 @@
   <div class="hero-photo">
     <div class="polaroid">
       <!-- Substitueix per <img src="images/teia.jpg" alt="Teia Turon"> -->
-      <div class="photo-frame no-photo"><img src="images/teia.jpg" alt="Teia Turon"></div>
+      <div class="photo-frame"><img src="images/teia.jpg" alt="Teia Turon" onerror="this.parentElement.classList.add('no-photo')"></div>
       <p class="caption">Girona</p>
     </div>
   </div>
@@ -274,6 +274,7 @@
         <!-- Substitueix el src per l'enllaç real del teu vídeo (YouTube embed o fitxer .mp4) -->
         <video controls poster="">
           <source src="videos/carnetjove.mp4" type="video/mp4">
+          <source src="videos/carnetjove-1.mp4" type="video/mp4">
         </video>
       </div>
     </article>
@@ -305,6 +306,7 @@
            data-en="March 2016. I acted in the film, which grossed nearly €2 million in theaters, ranking among the most-watched films of its opening weekend.">[text]</p>
         <video controls poster="">
           <source src="videos/pregon.mp4" type="video/mp4">
+          <source src="videos/pregon-1.mp4" type="video/mp4">
         </video>
       </div>
     </article>
@@ -334,6 +336,10 @@
            data-ca="Creació d'una identitat visual i campanya d'Instagram pensada per animar els joves a descobrir el Parc de la Devesa (Girona) a través de reptes setmanals. Responsable de la identitat visual i l'aspecte tècnic de la campanya."
            data-es="Creación de una identidad visual y campaña de Instagram pensada para animar a los jóvenes a descubrir el Parc de la Devesa (Girona) a través de retos semanales. Responsable de la identidad visual y el aspecto técnico de la campaña."
            data-en="Creation of a visual identity and Instagram campaign designed to encourage young people to engage with La Devesa Park in Girona through weekly challenges. Responsible for the campaign's visual identity and technical execution.">[text]</p>
+        <video controls poster="">
+          <source src="videos/devesa.mp4" type="video/mp4">
+          <source src="videos/devesa-1.mp4" type="video/mp4">
+        </video>
       </div>
     </article>
 
@@ -362,6 +368,10 @@
            data-ca="Desenvolupament de conceptes de campanya, redacció, identitats visuals i peces gràfiques adaptades a cada objectiu de comunicació: Girocleta (servei fictici de lloguer de bicicletes), el vi Sprintoso Moscato i el pintallavis Maybelline, entre altres."
            data-es="Desarrollo de conceptos de campaña, redacción, identidades visuales y piezas gráficas adaptadas a cada objetivo de comunicación: Girocleta (servicio ficticio de alquiler de bicicletas), el vino Sprintoso Moscato y el pintalabios Maybelline, entre otros."
            data-en="Development of campaign ideas, copywriting, visual identities and graphic pieces adapted to each communication objective: Girocleta (fictional bike-rental service), Sprintoso Moscato wine, and Maybelline lipstick, among others.">[text]</p>
+        <video controls poster="">
+          <source src="videos/girocleta.mp4" type="video/mp4">
+          <source src="videos/girocleta-1.mp4" type="video/mp4">
+        </video>
       </div>
     </article>
 
@@ -390,6 +400,10 @@
            data-ca="Direcció d'art, estilisme de props i disseny gràfic per a la creació d'Urban Fabrics, revista editorial desenvolupada com a projecte acadèmic de publicitat."
            data-es="Dirección de arte, estilismo de props y diseño gráfico para la creación de Urban Fabrics, revista editorial desarrollada como proyecto académico de publicidad."
            data-en="Art direction, prop styling and graphic design for the creation of Urban Fabrics, an editorial magazine developed as part of an academic advertising project.">[text]</p>
+        <video controls poster="">
+          <source src="videos/urbanfabrics.mp4" type="video/mp4">
+          <source src="videos/urbanfabrics-1.mp4" type="video/mp4">
+        </video>
       </div>
     </article>
 
@@ -421,6 +435,7 @@
         <!-- Substitueix per l'enllaç real de l'espot -->
         <video controls poster="">
           <source src="videos/valentes.mp4" type="video/mp4">
+          <source src="videos/valentes-1.mp4" type="video/mp4">
         </video>
       </div>
     </article>
@@ -478,37 +493,53 @@
     }
   }
 
-  // ---- carrusels d'imatges (fletxes, sense clicar per obrir) ----
+  // ---- carrusels d'imatges: detecten automàticament quantes fotos hi ha (fins a 8) ----
+  function probeImage(src){
+    return new Promise(function(resolve){
+      var img = new Image();
+      img.onload = function(){ resolve(src); };
+      img.onerror = function(){ resolve(null); };
+      img.src = src;
+    });
+  }
   document.querySelectorAll('.carousel').forEach(function(car){
-    var count = parseInt(car.dataset.images, 10) || 1;
     var folder = car.dataset.folder || '';
     var track = car.querySelector('.car-track');
     var dots = car.querySelector('.car-dots');
-    track.innerHTML = '';
-    dots.innerHTML = '';
-    for(var i = 1; i <= count; i++){
-      var slide = document.createElement('div');
-      slide.className = 'slide';
-      // Quan tinguis les fotos, substitueix aquesta línia per:
-      // slide.innerHTML = '<img src="images/' + folder + '-' + i + '.jpg" alt="">';
-      slide.textContent = 'Imatge ' + i + '/' + count;
-      track.appendChild(slide);
-      var dot = document.createElement('span');
-      if(i === 1) dot.className = 'on';
-      dots.appendChild(dot);
-    }
-    var index = 0;
-    function update(){
-      track.style.transform = 'translateX(-' + (index * 100) + '%)';
-      dots.querySelectorAll('span').forEach(function(d, di){ d.classList.toggle('on', di === index); });
-    }
-    car.querySelector('.prev').addEventListener('click', function(e){
-      e.stopPropagation();
-      index = (index - 1 + count) % count; update();
-    });
-    car.querySelector('.next').addEventListener('click', function(e){
-      e.stopPropagation();
-      index = (index + 1) % count; update();
+    var candidates = [];
+    for(var i = 1; i <= 8; i++){ candidates.push('images/' + folder + '-' + i + '.jpg'); }
+    Promise.all(candidates.map(probeImage)).then(function(results){
+      var found = results.filter(Boolean);
+      track.innerHTML = ''; dots.innerHTML = '';
+      if(found.length === 0){
+        var empty = document.createElement('div');
+        empty.className = 'slide';
+        empty.textContent = 'Encara no hi ha fotos';
+        track.appendChild(empty);
+        return;
+      }
+      found.forEach(function(src, idx){
+        var slide = document.createElement('div');
+        slide.className = 'slide';
+        var img = document.createElement('img');
+        img.src = src; img.alt = '';
+        slide.appendChild(img);
+        track.appendChild(slide);
+        var dot = document.createElement('span');
+        if(idx === 0) dot.className = 'on';
+        dots.appendChild(dot);
+      });
+      var index = 0;
+      function update(){
+        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        dots.querySelectorAll('span').forEach(function(d, di){ d.classList.toggle('on', di === index); });
+      }
+      car.querySelector('.prev').addEventListener('click', function(e){
+        e.stopPropagation(); index = (index - 1 + found.length) % found.length; update();
+      });
+      car.querySelector('.next').addEventListener('click', function(e){
+        e.stopPropagation(); index = (index + 1) % found.length; update();
+      });
     });
   });
 
