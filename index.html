@@ -238,7 +238,6 @@ nav.main-nav a:hover{
   display:inline-block;
 
   transition:color .2s ease;
-
 }
 
 
@@ -278,15 +277,36 @@ nav.main-nav a:hover{
 }
 
 
-.hero p{
+/* INTRO HERO */
 
-  font-size:1.2rem;
+.hero-intro{
 
   max-width:36ch;
 
   margin:1.5rem auto 0;
 
+}
+
+.hero-intro p{
+
+  font-size:1.2rem;
+
   line-height:1.5;
+
+}
+
+.hero-claim{
+
+  margin-top:1rem;
+
+  font-family:'Unbounded', sans-serif;
+
+  font-size:1rem !important;
+
+  font-weight:700;
+
+  line-height:1.35 !important;
+
 }
 
 
@@ -502,7 +522,7 @@ nav.main-nav a:hover{
 
 
 /* =========================================================
-   MARQUEE — LOOP INFINIT
+   MARQUEE
 ========================================================= */
 
 .marquee-wrap{
@@ -554,14 +574,6 @@ nav.main-nav a:hover{
 
   flex-shrink:0;
 }
-
-
-/*
-  Important:
-  tenim dues còpies EXACTAMENT iguals.
-  La segona comença just on acaba la primera.
-  Això fa que el moviment sigui continu.
-*/
 
 @keyframes marqueeLoop{
 
@@ -685,18 +697,49 @@ nav.main-nav a:hover{
 
 
 /* =========================================================
-   CARRUSEL
+   VÍDEOS
 ========================================================= */
 
-/*
-  Totes les finestres tenen EXACTAMENT la mateixa mida.
+.youtube-video,
+.project-video{
 
-  Les fotos NO es deformen.
-  Utilitzem object-fit: contain.
+  width:100%;
 
-  Això permet veure la fotografia sencera,
-  independentment del seu format original.
-*/
+  margin-bottom:1rem;
+
+  border:2px solid var(--ink);
+
+  border-radius:12px;
+
+  overflow:hidden;
+
+  background:#000;
+}
+
+.youtube-video iframe,
+.project-video iframe,
+.project-video video{
+
+  width:100%;
+
+  aspect-ratio:16/9;
+
+  display:block;
+
+  border:0;
+
+  background:#000;
+}
+
+.project-details .project-video:last-child{
+
+  margin-bottom:0;
+}
+
+
+/* =========================================================
+   CARRUSEL
+========================================================= */
 
 .carousel{
 
@@ -755,13 +798,6 @@ nav.main-nav a:hover{
 
   display:block;
 }
-
-
-/*
-  Una mica de color diferent al fons
-  perquè les fotos verticals no quedin
-  sobre un blanc buit gegant.
-*/
 
 .car-track .slide:nth-child(3n+1){
 
@@ -1254,15 +1290,31 @@ footer{
     </h1>
 
 
-    <p
-      data-i18n
-      data-ca="Estudiant de Publicitat i RP. M'agrada comunicar amb estil i impacte."
-      data-es="Estudiante de Publicidad y RRPP. Me gusta comunicar con estilo e impacto."
-      data-en="Advertising & PR student. I like to communicate with style and impact.">
+    <div class="hero-intro">
 
-      Estudiant de Publicitat i RP. M'agrada comunicar amb estil i impacte.
+      <p
+        data-i18n
+        data-ca="Estudiant de Publicitat i Relacions Públiques."
+        data-es="Estudiante de Publicidad y Relaciones Públicas."
+        data-en="Advertising and Public Relations student.">
 
-    </p>
+        Estudiant de Publicitat i Relacions Públiques.
+
+      </p>
+
+
+      <p
+        class="hero-claim"
+        data-i18n
+        data-ca="Perquè la creativitat és la intel·ligència divertint-se."
+        data-es="Porque la creatividad es la inteligencia divirtiéndose."
+        data-en="Because creativity is intelligence having fun.">
+
+        Perquè la creativitat és la intel·ligència divertint-se.
+
+      </p>
+
+    </div>
 
 
     <a
@@ -1363,8 +1415,6 @@ footer{
 
   <div class="marquee">
 
-    <!-- CÒPIA 1 -->
-
     <div class="marquee-content">
 
       <span>
@@ -1381,8 +1431,6 @@ footer{
 
     </div>
 
-
-    <!-- CÒPIA 2 -->
 
     <div class="marquee-content">
 
@@ -1469,12 +1517,30 @@ footer{
 
 
     <!-- =====================================================
-         PAID 1
+         PAID 1 — CARNET JOVE
     ====================================================== -->
 
     <article
       class="project-card"
       data-cat="paid">
+
+
+      <!-- VÍDEO PRINCIPAL YOUTUBE -->
+
+      <div class="youtube-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/9w3DgJkT8Q0"
+          title="Campanya Carnet Jove 2025"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <!-- CARRUSEL D'IMATGES -->
 
       <div
         class="carousel"
@@ -1576,17 +1642,36 @@ footer{
         </p>
 
 
-        <video controls>
+        <!-- VÍDEO YOUTUBE DINS DE MÉS INFORMACIÓ -->
 
-          <source
-            src="videos/carnetjove.mp4"
-            type="video/mp4">
+        <div class="project-video">
 
-          <source
-            src="videos/carnetjove-1.mp4"
-            type="video/mp4">
+          <iframe
+            src="https://www.youtube.com/embed/KlsNxD-eNKk"
+            title="Carnet Jove 2025"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
 
-        </video>
+        </div>
+
+
+        <!-- VÍDEO LOCAL QUE PUJARÀS A GITHUB -->
+
+        <div class="project-video">
+
+          <video controls>
+
+            <source
+              src="videos/carnetjove-3.mp4"
+              type="video/mp4">
+
+            El teu navegador no pot reproduir aquest vídeo.
+
+          </video>
+
+        </div>
 
       </div>
 
@@ -2451,14 +2536,6 @@ document.querySelectorAll(
 
   var candidates = [];
 
-
-  /*
-    Busquem fins a 8 imatges:
-
-    images/carnetjove-1.jpg
-    images/carnetjove-2.jpg
-    etc.
-  */
 
   for(
     var i = 1;
